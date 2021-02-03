@@ -41,7 +41,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "Utils\\": "utils"
-        }
+        },
+        "classmap": [
+            "helpers/"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
