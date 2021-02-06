@@ -1,21 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+$api = app('Dingo\Api\Routing\Router');
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+$params = [
+    'prefix' => 'api',
+    'version' => 'v1.0',
+    'namespace' => 'Modules\Api\Http\Controllers',
+    'middleware' => ['api.throttle'],
+    'limit' => config('api.rate_limits.sign.limit'),
+    'expires' => config('api.rate_limits.sign.expires'),
+];
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// 不需要登录的接口
+$api->group($params, function ($api) {
+    $api->get('/banner2', 'UserController@index');
 });
 
-
+// 需要登录的接口

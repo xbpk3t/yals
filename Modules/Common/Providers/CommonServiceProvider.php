@@ -1,20 +1,20 @@
 <?php
 
-namespace Modules\Api\Providers;
+namespace Modules\Common\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class ApiServiceProvider extends ServiceProvider
+class CommonServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'Api';
+    protected $moduleName = 'Common';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'api';
+    protected $moduleNameLower = 'common';
 
     /**
      * Boot the application events.
@@ -24,6 +24,7 @@ class ApiServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerTranslations();
+        $this->loadMigrationsFrom(module_path($this->moduleName, ''));
     }
 
     /**
@@ -38,7 +39,7 @@ class ApiServiceProvider extends ServiceProvider
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
         } else {
-            $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+            $this->loadTranslationsFrom(module_path($this->moduleName, ''), $this->moduleNameLower);
         }
     }
 

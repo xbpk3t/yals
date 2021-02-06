@@ -1,0 +1,26 @@
+<?php
+
+$api = app('Dingo\Api\Routing\Router');
+
+$params = [
+    'prefix' => 'admin',
+    'version' => 'v1.0',
+    'namespace' => 'Modules\Admin\Http\Controllers',
+//    'middleware' => ['cors'],
+//    'middleware' => ['api.throttle'],
+//    'limit' => config('api.rate_limits.sign.limit'),
+//    'expires' => config('api.rate_limits.sign.expires'),
+];
+
+// 不需要登录的接口
+$api->group($params, function ($api) {
+    $api->group(['prefix' => 'user'], function ($api) {
+        // 后台登录
+        $api->post('/login', 'AdminController@login');
+    });
+});
+
+// 需要登录的接口
+$api->group($params, function ($api) {
+
+});

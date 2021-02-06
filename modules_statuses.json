@@ -1,5 +1,7 @@
 {
     "Admin": true,
     "Base": true,
-    "Api": true
+    "Api": true,
+    "Demo": true,
+    "Common": true
 }
