@@ -3,11 +3,11 @@
 
 
 1. 接口
-    1. dingo
+    1. dingo😀
     2. jwt-auth
         1. `多表多用户系统隔离`
         2. `jwt-auth`黑名单
-    3. fractal
+    3. fractal😀
     4. RSA接口加密(前台用户系统借鉴gadmin，使用RSA加密)
     5. 封装好的Exception异常类
 2. 后台
@@ -15,7 +15,7 @@
     2. 后台用户系统使用casbin实现RBAC
     3. 后台log
 3. 常用功能
-    1. 文件上传(七牛云、上传文件表)😀
+    1. 文件上传(七牛云、上传文件表)
     2. 短信发送
     3. redis常用操作`RedisService`、redis锁`RedisLock`
     4. 敏感词功能

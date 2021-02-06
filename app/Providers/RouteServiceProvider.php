@@ -40,8 +40,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
 
             // 通用模块路由
-            Route::middleware('web')
-                ->namespace($this->namespace)
+            Route::namespace($this->namespace)
                 ->group(base_path('routes/common.php'));
 
             // api模块路由
@@ -50,8 +49,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             // 后台模块路由
-            Route::middleware('web')
-                ->namespace($this->namespace)
+            Route::namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
         });
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\User;
+namespace Modules\Common\Http\Requests\Base;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserLoginRequest extends FormRequest
+class BasePageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -3,7 +3,7 @@
 $api = app('Dingo\Api\Routing\Router');
 
 $params = [
-    'prefix' => 'admin',
+    'prefix' => 'api',
     'version' => 'v1.0',
     'namespace' => 'Modules\Admin\Http\Controllers',
 //    'middleware' => ['cors'],
@@ -14,9 +14,9 @@ $params = [
 
 // 不需要登录的接口
 $api->group($params, function ($api) {
-    $api->group(['prefix' => 'user'], function ($api) {
+    $api->group(['prefix' => '/user'], function ($api) {
         // 后台登录
-        $api->post('/login', 'AdminController@login');
+        $api->post('/log', 'AdminController@login');
     });
 });
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Api\Entities;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +11,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+
+    protected $table = 'tz_user';
 
     /**
      * The attributes that are mass assignable.

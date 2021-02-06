@@ -14,6 +14,9 @@ $params = [
 // 不需要登录的接口
 $api->group($params, function ($api) {
     $api->get('/banner2', 'UserController@index');
+    $api->group(['prefix' => '/user'], function ($api) {
+        $api->post('/login', 'UserController@login');
+    });
 });
 
 // 需要登录的接口
