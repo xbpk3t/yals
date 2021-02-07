@@ -131,7 +131,7 @@ if (!function_exists('delByValue')) {
 }
 
 if (!function_exists('jsonEncode')) {
-    function jsonEncode(array $arr): string
+    function jsonEncode($arr): string
     {
         return json_encode($arr);
     }
@@ -223,13 +223,6 @@ if (!function_exists('delByValue')) {
         }
 
         return $arr;
-    }
-}
-
-if (!function_exists('jsonEncode')) {
-    function jsonEncode(array $arr): string
-    {
-        return json_encode($arr);
     }
 }
 
@@ -455,3 +448,4 @@ function mapFlatten($items)
 
     return $result;
 }
+

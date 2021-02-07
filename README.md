@@ -19,16 +19,17 @@
     1. 文件上传(七牛云、上传文件表)
     2. 短信发送😀
     3. redis常用操作`RedisService`、redis锁`RedisLock`😀
-    4. 敏感词功能
+    4. 敏感词功能😀
     5. 常用辅助函数库😀
 4. 其他
-    1. laravel分模块最佳实践😀
+    1. laravel分模块的最佳实践😀
     2. MRSC模型(不写)
     3. swagger(laravel的swagger不好用，不写)
     4. 支持切换dev、test、prod环境配置
     5. 支持项目初始化
         1. 数据库迁移工具(本身jwt需要的user表，也需要迁移工具)
         2. 更新goutils等引入拓展包的版本
+    6. laravel错误日志的最佳实践
 
 
 

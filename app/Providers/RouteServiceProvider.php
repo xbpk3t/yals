@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+    protected $commonNamespace = 'Modules\Common\Http\Controllers';
+    protected $apiNamespace = 'Modules\Api\Http\Controllers';
+    protected $adminNamespace = 'Modules\Admin\Http\Controllers';
+
     /**
      * The controller namespace for the application.
      *
@@ -40,17 +44,17 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
 
             // 通用模块路由
-            Route::namespace($this->namespace)
-                ->group(base_path('routes/common.php'));
+            Route::namespace($this->commonNamespace)
+                ->group(base_path('Modules/Common/common.php'));
 
             // api模块路由
             Route::middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+                ->namespace($this->apiNamespace)
+                ->group(base_path('Modules/Api/api.php'));
 
             // 后台模块路由
-            Route::namespace($this->namespace)
-                ->group(base_path('routes/admin.php'));
+            Route::namespace($this->adminNamespace)
+                ->group(base_path('Modules/Admin/admin.php'));
         });
     }
 

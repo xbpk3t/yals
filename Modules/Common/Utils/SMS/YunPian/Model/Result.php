@@ -40,10 +40,10 @@ class Result
      */
     private $data;
 
-    public function __toString()
-    {
-        return "{$this->code}-{$this->msg}-{$this->detail}";
-    }
+//    public function __toString()
+//    {
+//        return "{$this->code}-{$this->msg}-{$this->detail}";
+//    }
 
     public function isSucc()
     {
@@ -54,7 +54,7 @@ class Result
      * @param number $code
      * @param bool   $rr
      *
-     * @return number|\Modules\Common\Utils\SMS\YunPian\Model\Resulot
+     * @return number|\Modules\Common\Utils\SMS\YunPian\Model\Result
      */
     public function code($code = null, $rr = false)
     {

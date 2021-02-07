@@ -17,7 +17,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "nwidart/laravel-modules": "^8.2",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "zgldh/qiniu-laravel-storage": "^0.10.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -46,6 +47,10 @@
         },
         "classmap": [
             "helpers/"
+        ],
+        "files": [
+            "helpers/yw.php",
+            "helpers/array.php"
         ]
     },
     "autoload-dev": {

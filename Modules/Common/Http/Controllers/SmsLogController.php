@@ -9,6 +9,6 @@ class SmsLogController extends BaseController
 {
     public function sendSms(SendSmsRequest $request)
     {
-        SmsService::sms($request->mobile);
+        SmsService::sms($request->mobile, smsCode());
     }
 }

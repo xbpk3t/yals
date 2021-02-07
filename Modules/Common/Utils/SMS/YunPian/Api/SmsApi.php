@@ -116,7 +116,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function single_send(array $param)
+    public function singleSend(array $param)
     {
         static $must = [self::APIKEY, self::MOBILE, self::TEXT];
         $r = $this->verifyParam($param, $must);
@@ -167,7 +167,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function batch_send(array $param)
+    public function batchSend(array $param)
     {
         static $must = [self::APIKEY, self::MOBILE, self::TEXT];
         $r = $this->verifyParam($param, $must);
@@ -222,7 +222,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function multi_send(array $param)
+    public function multiSend(array $param)
     {
         static $must = [self::APIKEY, self::MOBILE, self::TEXT];
         $r = $this->verifyParam($param, $must);
@@ -259,7 +259,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function pull_status(array $param)
+    public function pullStatus(array $param)
     {
         static $must = [self::APIKEY];
         $r = $this->verifyParam($param, $must);
@@ -296,7 +296,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function pull_reply(array $param)
+    public function pullReply(array $param)
     {
         static $must = [self::APIKEY];
         $r = $this->verifyParam($param, $must);
@@ -351,7 +351,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function get_reply(array $param)
+    public function getReply(array $param)
     {
         static $must = [self::APIKEY, self::START_TIME, self::END_TIME, self::PAGE_NUM, self::PAGE_SIZE];
         $r = $this->verifyParam($param, $must);
@@ -388,7 +388,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function get_black_word(array $param)
+    public function getBlackWord(array $param)
     {
         static $must = [self::APIKEY, self::TEXT];
         $r = $this->verifyParam($param, $must);
@@ -437,7 +437,7 @@ class SmsApi extends YunpianApi
      *
      * @return Result
      */
-    public function get_record(array $param)
+    public function getRecord(array $param)
     {
         static $must = [self::APIKEY, self::START_TIME, self::END_TIME];
         $r = $this->verifyParam($param, $must);
