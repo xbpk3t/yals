@@ -17,10 +17,10 @@
     3. 后台log
 3. 常用功能
     1. 文件上传(七牛云、上传文件表)
-    2. 短信发送
-    3. redis常用操作`RedisService`、redis锁`RedisLock`
+    2. 短信发送😀
+    3. redis常用操作`RedisService`、redis锁`RedisLock`😀
     4. 敏感词功能
-    5. 常用辅助函数库
+    5. 常用辅助函数库😀
 4. 其他
     1. laravel分模块最佳实践😀
     2. MRSC模型(不写)

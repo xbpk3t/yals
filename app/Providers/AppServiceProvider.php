@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Utils\CustomSerializer;
 use Illuminate\Support\ServiceProvider;
+use Modules\Common\Utils\Base\CustomSerializer;
 
 class AppServiceProvider extends ServiceProvider
 {

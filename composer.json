@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jacobcyl/ali-oss-storage": "^2.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "nwidart/laravel-modules": "^8.2",
@@ -41,8 +42,7 @@
             "App\\": "app/",
             "Modules\\": "modules/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Utils\\": "utils"
+            "Database\\Seeders\\": "database/seeders/"
         },
         "classmap": [
             "helpers/"

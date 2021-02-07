@@ -29,4 +29,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'sms' => [
+        'default' => env('SMS_DEFAULT', 'yp'),
+
+        'yp' => [
+            'api_key' => env('YUNPIAN_API_KEY', ''),
+            'signature' => env('YUNPIAN_SIGNATURE', ''),
+        ],
+        'ali' => [
+
+        ],
+    ],
 ];

@@ -2,12 +2,13 @@
 
 namespace Modules\Common\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Modules\Common\Utils\SMS\SmsService;
+use Modules\Common\Http\Requests\SendSmsRequest;
 
 class SmsLogController extends BaseController
 {
-    public function sendSms(Request $request)
+    public function sendSms(SendSmsRequest $request)
     {
-        dd(1);
+        SmsService::sms($request->mobile);
     }
 }

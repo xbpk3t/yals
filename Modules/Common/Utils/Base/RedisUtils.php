@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils;
+namespace Modules\Common\Utils\Base;
 
 use Illuminate\Support\Facades\Redis;
 

@@ -3,7 +3,7 @@
 $api = app('Dingo\Api\Routing\Router');
 
 $params = [
-    'prefix' => 'common',
+    'prefix' => 'api',
     'version' => 'v1.0',
     'namespace' => 'Modules\Common\Http\Controllers',
 ];
@@ -15,7 +15,7 @@ $api->group($params, function ($api) {
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function ($api) {
-        $api->get('/sms', 'SmsLogController@sendSms');
+        $api->post('/sms', 'SmsLogController@sendSms');
         $api->post('/upload', 'UploadFileController@upload');
     });
 

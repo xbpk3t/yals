@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils;
+namespace Modules\Common\Utils\Base;
 
 use League\Fractal\Pagination\PaginatorInterface;
 use League\Fractal\Serializer\DataArraySerializer;
