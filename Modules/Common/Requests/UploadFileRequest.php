@@ -14,7 +14,7 @@ class UploadFileRequest extends ApiRequest
     public function rules()
     {
         return [
-            'file' => ['required', 'image|size:2000'],
+            'file' => ['required', 'image', 'max:2000'],
         ];
     }
 }

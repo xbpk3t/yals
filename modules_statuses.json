@@ -3,5 +3,6 @@
     "Base": true,
     "Api": true,
     "Demo": true,
-    "Common": true
+    "Common": true,
+    "Middleware": true
 }
