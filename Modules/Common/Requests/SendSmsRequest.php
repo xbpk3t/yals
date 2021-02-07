@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Common\Http\Requests;
+namespace Modules\Common\Requests;
 
-use Modules\Common\Http\Requests\Base\ApiRequest;
+use Modules\Common\Requests\Base\ApiRequest;
 
 class SendSmsRequest extends ApiRequest
 {

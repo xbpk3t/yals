@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Common\Http\Controllers;
+namespace Modules\Common\Controllers;
 
-use Modules\Common\Http\Requests\UploadFileRequest;
+use Modules\Common\Requests\UploadFileRequest;
 use Modules\Common\Utils\Base\QiNiu;
 
 class UploadFileController extends BaseController

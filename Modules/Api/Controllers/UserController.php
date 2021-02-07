@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Api\Http\Controllers;
+namespace Modules\Api\Controllers;
 
 use Modules\Api\Entities\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Modules\Api\Http\Requests\User\LoginRequest;
-use Modules\Common\Http\Controllers\BaseController;
+use Modules\Api\Requests\User\LoginRequest;
+use Modules\Common\Controllers\BaseController;
 
 class UserController extends BaseController
 {

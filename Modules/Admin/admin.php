@@ -5,11 +5,11 @@ $api = app('Dingo\Api\Routing\Router');
 $params = [
     'prefix' => 'api',
     'version' => 'v1.0',
-    'namespace' => 'Modules\Admin\Http\Controllers',
+    'namespace' => 'Modules\Admin\Controllers',
 //    'middleware' => ['cors'],
-//    'middleware' => ['api.throttle'],
-//    'limit' => config('api.rate_limits.sign.limit'),
-//    'expires' => config('api.rate_limits.sign.expires'),
+    'middleware' => ['api.throttle'],
+    'limit' => config('api.rate_limits.sign.limit'),
+    'expires' => config('api.rate_limits.sign.expires'),
 ];
 
 // 不需要登录的接口

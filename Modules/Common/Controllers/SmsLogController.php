@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Common\Http\Controllers;
+namespace Modules\Common\Controllers;
 
 use Modules\Common\Utils\SMS\SmsService;
-use Modules\Common\Http\Requests\SendSmsRequest;
+use Modules\Common\Requests\SendSmsRequest;
 
 class SmsLogController extends BaseController
 {

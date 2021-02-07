@@ -5,7 +5,7 @@ $api = app('Dingo\Api\Routing\Router');
 $params = [
     'prefix' => 'api',
     'version' => 'v1.0',
-    'namespace' => 'Modules\Common\Http\Controllers',
+    'namespace' => 'Modules\Common\Controllers',
 ];
 
 $api->group($params, function ($api) {

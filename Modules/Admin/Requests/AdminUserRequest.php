@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Admin\Http\Requests;
+namespace Modules\Admin\Requests;
 
 use Illuminate\Support\Arr;
 use Modules\Admin\Entities\AdminUser;

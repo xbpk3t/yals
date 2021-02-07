@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Api\Http\Requests\User;
+namespace Modules\Api\Requests\User;
 
-use Modules\Common\Http\Requests\Base\ApiRequest;
+use Modules\Common\Requests\Base\ApiRequest;
 
 class LoginRequest extends ApiRequest
 {

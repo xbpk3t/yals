@@ -4,6 +4,8 @@ namespace Modules\Admin\Entities;
 
 class AdminRole extends Model
 {
+    protected $table = 'admin_role';
+
     protected $fillable = ['name', 'slug'];
 
     public function permissions()

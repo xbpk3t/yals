@@ -13,6 +13,9 @@ class AdminUser extends Authenticatable implements JWTSubject
     use HasPermissions;
     use Notifiable;
     use ModelHelpers;
+
+    protected $table = 'admin_user';
+
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 
     public function getJWTIdentifier()

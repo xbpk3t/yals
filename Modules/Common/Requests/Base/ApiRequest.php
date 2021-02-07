@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Common\Http\Requests\Base;
+namespace Modules\Common\Requests\Base;
 
 use Dingo\Api\Exception\ResourceException;
 use Illuminate\Foundation\Http\FormRequest;
