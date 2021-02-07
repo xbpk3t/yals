@@ -2,7 +2,6 @@
 
 namespace Modules\Api\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Modules\Common\Http\Requests\Base\ApiRequest;
 
 class LoginRequest extends ApiRequest
@@ -16,7 +15,7 @@ class LoginRequest extends ApiRequest
     {
         return [
             'username' => ['required'],
-            'password' => ['required']
+            'password' => ['required'],
         ];
     }
 }

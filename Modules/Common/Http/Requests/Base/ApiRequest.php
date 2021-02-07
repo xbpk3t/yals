@@ -20,8 +20,6 @@ class ApiRequest extends FormRequest
     }
 
     /**
-     * @param Validator $validator
-     *
      * @throws ValidationException
      */
     protected function failedValidation(Validator $validator): void
@@ -30,8 +28,6 @@ class ApiRequest extends FormRequest
             throw new ResourceException($validator->errors()->first(), null);
         }
 
-        throw (new ValidationException($validator))
-            ->errorBag($this->errorBag)
-            ->redirectTo($this->getRedirectUrl());
+        throw (new ValidationException($validator))->errorBag($this->errorBag)->redirectTo($this->getRedirectUrl());
     }
 }

@@ -3,8 +3,6 @@
 namespace Modules\Common\Http\Controllers;
 
 use Dingo\Api\Routing\Helpers;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class BaseController extends Controller
@@ -18,13 +16,37 @@ class BaseController extends Controller
     protected $ban = 204;
 
     /**
-     * @param array  $data
-     * @param int    $code
-     * @param string $message
+     * @return mixed
+     */
+    public function okStr(string $data = '', int $code = 200, string $message = 'success')
+    {
+        return $this->ok([]);
+    }
+
+    // 返回msg
+    public function okMsg($msg)
+    {
+        return $this->ok([], 200, $msg);
+    }
+
+    // 返回data
+    public function okData(array $data = null)
+    {
+        return $this->ok($data);
+    }
+
+    // 错误，返回msg
+    public function errorMsg(string $msg)
+    {
+        return $this->error([], 400, $msg);
+    }
+
+    /**
+     * @param array $data
      *
      * @return mixed
      */
-    public function respondSuccess(array $data = null, int $code = 200, string $message = 'success')
+    private function ok(array $data = null, int $code = 200, string $message = 'success')
     {
         $res = [
             'code' => $code,
@@ -38,31 +60,11 @@ class BaseController extends Controller
     /**
      * 返回400.
      *
-     * @param string $message
-     * @param array  $data
-     * @param int    $code
+     * @param array $data
      *
      * @return mixed
      */
-    public function respondError(string $message, array $data = null, int $code = 400)
-    {
-        $res = [
-            'code' => $code,
-            'message' => $message,
-            'data' => $data,
-        ];
-
-        return $this->response->array($res);
-    }
-
-    /**
-     * @param string $data
-     * @param int    $code
-     * @param string $message
-     *
-     * @return mixed
-     */
-    public function respondStringSuccess(string $data = '', int $code = 200, string $message = 'success')
+    private function error(array $data = null, int $code = 400, string $message = 'error')
     {
         $res = [
             'code' => $code,

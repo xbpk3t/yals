@@ -4,8 +4,6 @@
  * 用curl抓图片；会乱码；.
  * 用file_put_contents；只能在知道文件在项目里的路径的情况下，才能使用这个方法；
  * 需要用这个方法；.
- *
- * @param string $url
  */
 function getFileByUrl(string $url)
 {
@@ -71,4 +69,3 @@ function getDocDetail($filename = '')
 
     return $striped_content;
 }
-

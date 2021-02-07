@@ -15,7 +15,6 @@ $api->group($params, function ($api) {
         'limit' => config('api.rate_limits.sign.limit'),
         'expires' => config('api.rate_limits.sign.expires'),
     ], function ($api) {
-
         $api->get('/sms', 'SmsLogController@sendSms');
         $api->post('/upload', 'UploadFileController@upload');
     });

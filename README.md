@@ -10,6 +10,7 @@
     3. fractal😀
     4. RSA接口加密(前台用户系统借鉴gadmin，使用RSA加密)
     5. 封装好的Exception异常类
+    6. 后置中间件记录每条请求的参数和响应
 2. 后台
     1. CORS
     2. 后台用户系统使用casbin实现RBAC
@@ -21,8 +22,8 @@
     4. 敏感词功能
     5. 常用辅助函数库
 4. 其他
-    1. laravel分模块最佳实践
-    2. MRSC模型
+    1. laravel分模块最佳实践😀
+    2. MRSC模型(不写)
     3. swagger
     4. 支持切换dev、test、prod环境配置
     5. 支持项目初始化
@@ -50,4 +51,10 @@
 ---
 
 把laravel-admin的后台功能都抽出来接口
+
+---
+
+
+`php-cs-fixer fix $PWD --config=cs.php`
+
 

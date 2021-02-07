@@ -9,7 +9,6 @@ class CustomSerializer extends DataArraySerializer
 {
     /**
      * @param string $resourceKey
-     * @param array  $data
      *
      * @return array
      */
@@ -24,7 +23,6 @@ class CustomSerializer extends DataArraySerializer
 
     /**
      * @param string $resourceKey
-     * @param array  $data
      *
      * @return array
      */

@@ -24,7 +24,6 @@ class BaseTimeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

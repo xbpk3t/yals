@@ -95,11 +95,6 @@ if (!function_exists('afterDaysFormat')) {
 if (!function_exists('beforeDaysFormatList')) {
     /**
      * 列出之前n天的格式化时间，返回数组.
-     *
-     * @param string $days
-     * @param string $prefix
-     *
-     * @return array
      */
     function beforeDaysFormatList(string $days, string $prefix = ''): array
     {

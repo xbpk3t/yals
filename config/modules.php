@@ -3,7 +3,6 @@
 use Nwidart\Modules\Activators\FileActivator;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Module Namespace
@@ -31,7 +30,6 @@ return [
 
 //            'scaffold/config' => 'Config/config.php',
             'composer' => 'composer.json',
-
 
 //            'routes/api' => 'Routes/api.php',
 //            'routes/web' => 'Routes/web.php',
@@ -126,8 +124,6 @@ return [
             'jobs' => ['path' => 'Jobs', 'generate' => false],
 
             'resource' => ['path' => 'Transformers', 'generate' => false],
-
-
 
 //            'routes' => ['path' => 'Routes', 'generate' => true],
 
@@ -257,7 +253,7 @@ return [
     */
     'register' => [
         'translations' => true,
-        /**
+        /*
          * load files on boot or register method
          *
          * Note: boot not compatible with asgardcms

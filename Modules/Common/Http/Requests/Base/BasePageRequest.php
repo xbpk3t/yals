@@ -24,7 +24,6 @@ class BasePageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

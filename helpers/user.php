@@ -3,10 +3,6 @@
 if (!function_exists('getUserConstellation')) {
     /**
      * 获取用户的星座.
-     *
-     * @param string $birthday
-     *
-     * @return string
      */
     function getUserConstellation(string $birthday): string
     {
@@ -26,7 +22,6 @@ if (!function_exists('getUserConstellation')) {
     }
 }
 
-
 if (!function_exists('parseBirthday')) {
     function parseBirthday(string $birthday)
     {
@@ -35,4 +30,3 @@ if (!function_exists('parseBirthday')) {
         return ['year' => $matches[1], 'month' => $matches[2], 'day' => $matches[3]];
     }
 }
-

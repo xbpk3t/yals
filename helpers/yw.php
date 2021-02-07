@@ -42,8 +42,6 @@ if (!function_exists('isPro')) {
  *
  * @param $str
  * @param string $encoding
- *
- * @return string
  */
 function detectEncoding($str, $encoding = 'utf8'): string
 {

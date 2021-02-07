@@ -13,6 +13,5 @@ class UploadFileSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }

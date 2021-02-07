@@ -1,4 +1,5 @@
 <?php
+
 namespace Utils;
 
 use Illuminate\Support\Facades\Redis;
@@ -23,8 +24,6 @@ class RedisUtils
     }
 
     /**
-     * @param string $key
-     *
      * @return int
      */
     public function isKeyExist(string $key): bool
@@ -33,7 +32,7 @@ class RedisUtils
     }
 
     /**
-     * todo matchKeys有问题
+     * todo matchKeys有问题.
      *
      * @param string ...$redisKeys
      *
@@ -60,10 +59,6 @@ class RedisUtils
 
     /**
      * 模糊匹配所有的key.
-     *
-     * @param array $redisKeys
-     *
-     * @return array
      */
     public function matchKeys(array $redisKeys): array
     {
@@ -229,13 +224,13 @@ class RedisUtils
         return $this->redis->set($key, $val);
     }
 
-    public function get($key):string
+    public function get($key): string
     {
         return $this->redis->get($key);
     }
 
-    public function exists($key):bool
+    public function exists($key): bool
     {
-        return $this->redis->exists($key) == 1;
+        return 1 == $this->redis->exists($key);
     }
 }

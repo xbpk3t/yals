@@ -22,5 +22,4 @@ $api->group($params, function ($api) {
 
 // 需要登录的接口
 $api->group($params, function ($api) {
-
 });
