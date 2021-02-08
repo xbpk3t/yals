@@ -1,4 +1,5 @@
 <?php
+
 namespace Modules\Common\Traits;
 
 use Dingo\Api\Routing\Helpers;

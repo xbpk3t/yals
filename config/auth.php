@@ -74,12 +74,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             // 这里写'table' => 'users'或者'model' => 对应model
-            'model' => \Modules\Api\Entities\User::class
+            'model' => \Modules\Api\Entities\User::class,
         ],
         'admin-users' => [
             'driver' => 'eloquent',
-            'model' => \Modules\Admin\Entities\AdminUser::class
-        ]
+            'model' => \Modules\Admin\Entities\AdminUser::class,
+        ],
     ],
 
     /*

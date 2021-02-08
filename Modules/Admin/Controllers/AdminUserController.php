@@ -15,33 +15,8 @@ use Modules\Admin\Requests\AdminUserProfileRequest;
 
 class AdminUserController extends BaseController
 {
-    public function user()
-    {
-        $user = Admin::user();
 
-        return $this->okObject(
-            AdminUserResource::make($user)
-                ->gatherAllPermissions()
-                ->onlyRolePermissionSlugs()
-        );
-    }
-
-    public function editUser()
-    {
-        $user = Admin::user();
-        $user->load(['roles', 'permissions']);
-
-        return $this->okObject(AdminUserResource::make($user));
-    }
-
-    public function updateUser(AdminUserProfileRequest $request)
-    {
-        $inputs = $request->validated();
-        Admin::user()->updateUser($inputs);
-
-        return $this->callAction('user', [])->setStatusCode(201);
-    }
-
+    // 后台用户列表
     public function index(AdminUserFilter $filter)
     {
         $users = AdminUser::query()
@@ -53,6 +28,7 @@ class AdminUserController extends BaseController
         return $this->okObject(AdminUserResource::collection($users));
     }
 
+    // 添加后台用户
     public function store(AdminUserRequest $request, AdminUser $user)
     {
         $inputs = $request->validated();
@@ -68,12 +44,16 @@ class AdminUserController extends BaseController
         return $this->created(AdminUserResource::make($user));
     }
 
+
+
+    // 展示后台用户详情
     public function show(AdminUser $adminUser)
     {
         $adminUser->load(['roles', 'permissions']);
 
         return $this->okObject(AdminUserResource::make($adminUser));
     }
+
 
     public function update(AdminUserRequest $request, AdminUser $adminUser)
     {

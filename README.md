@@ -1,8 +1,7 @@
 # laravel-starter
 
 
-
-1. 接口
+1. api模块
     1. dingo😀
     2. jwt-auth
         1. `多表多用户系统隔离`😀
@@ -10,12 +9,12 @@
     3. fractal😀
     4. RSA接口加密(前台用户系统借鉴gadmin，使用RSA加密)
     5. 封装好的Exception异常类
-    6. 后置中间件记录每条请求的参数和响应
-2. 后台
+    6. 记录每条请求的参数和响应-后置中间件
+2. admin模块
     1. CORS😀
     2. RBAC😀
-    3. 后台log
-3. 通用功能
+    3. 后台log-后置中间件😀
+3. common模块
     1. 文件上传(七牛云、上传文件表)😀
     2. 短信发送😀
     3. redis常用操作`RedisService`、redis锁`RedisLock`😀
@@ -23,8 +22,8 @@
     5. 常用辅助函数库😀
 4. 其他
     1. laravel分模块的最佳实践😀
-    2. MRSC模型(不写)
-    3. swagger(laravel的swagger不好用，不写)
+    2. MRSC模型(已留出文件夹，具体业务相关不写)😀
+    3. swagger(php的swagger不好用，不写)😀
     4. 支持切换dev、test、prod环境配置😀
     5. 支持项目初始化
         1. 数据库迁移工具(本身jwt需要的user表，也需要迁移工具)

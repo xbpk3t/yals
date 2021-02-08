@@ -2,20 +2,16 @@
 
 namespace Modules\Admin\Controllers;
 
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Modules\Admin\Requests\AdminUserProfileRequest;
+use Modules\Admin\Resources\AdminUserResource;
 use Modules\Admin\Utils\Admin;
 use Modules\Common\Controllers\BaseController;
-use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AdminController extends BaseController
 {
     use AuthenticatesUsers;
-
-    public function username()
-    {
-        return 'username';
-    }
 
     public function logout()
     {
@@ -33,6 +29,36 @@ class AdminController extends BaseController
         ];
 
         return $this->okList($res);
+    }
+
+    // 修改用户名、密码、头像
+    public function updateUser(AdminUserProfileRequest $request)
+    {
+        $inputs = $request->validated();
+        Admin::user()->updateUser($inputs);
+
+        return $this->callAction('user', [])->setStatusCode(201);
+    }
+
+    // 当前用户及对应角色、权限
+    public function currentUser()
+    {
+        $user = Admin::user();
+        $user->load(['roles', 'permissions']);
+
+        return $this->okObject(AdminUserResource::make($user));
+    }
+
+    // 当前用户及对应角色、权限
+    public function user()
+    {
+        $user = Admin::user();
+
+        return $this->okObject(
+            AdminUserResource::make($user)
+                ->gatherAllPermissions()
+                ->onlyRolePermissionSlugs()
+        );
     }
 
     protected function attemptLogin(Request $request)

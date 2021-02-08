@@ -3,8 +3,8 @@
 namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
-use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Modules\Admin\Middleware\LogOperation;
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
 //        \Modules\Admin\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        LogOperation::class
+        LogOperation::class,
     ];
 
     /**

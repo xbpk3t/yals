@@ -2,19 +2,15 @@
 
 namespace Modules\Admin\Middleware;
 
-use Modules\Admin\Entities\OperationLog;
-use Modules\Admin\Entities\AdminUser;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Modules\Admin\Utils\Admin;
+use Modules\Admin\Entities\OperationLog;
 
 class LogOperation
 {
     /**
      * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
      *
      * @return mixed
      */
@@ -26,10 +22,10 @@ class LogOperation
             $setProxy = $request->setTrustedProxies($ips, \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR);
             $log = [
                 'user_id' => Admin::user()->id,
-                'path'    => substr($request->path(), 0, 255),
-                'method'  => $request->method(),
-                'ip'      => $request->getClientIp(),
-                'input'   => jsonEncode($request->input()),
+                'path' => mb_substr($request->path(), 0, 255),
+                'method' => $request->method(),
+                'ip' => $request->getClientIp(),
+                'input' => jsonEncode($request->input()),
             ];
 
             try {
@@ -39,14 +35,10 @@ class LogOperation
             }
         }
 
-
-
         return $next($request);
     }
 
     /**
-     * @param Request $request
-     *
      * @return bool
      */
     protected function shouldLogOperation(Request $request)
@@ -73,7 +65,7 @@ class LogOperation
         }
 
         return $allowedMethods->map(function ($method) {
-            return strtoupper($method);
+            return mb_strtoupper($method);
         })->contains($method);
     }
 
@@ -87,7 +79,7 @@ class LogOperation
     protected function inExceptArray($request)
     {
         foreach (config('admin.operation_log.except') as $except) {
-            if ($except !== '/') {
+            if ('/' !== $except) {
                 $except = trim($except, '/');
             }
 

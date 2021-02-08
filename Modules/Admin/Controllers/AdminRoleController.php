@@ -3,6 +3,7 @@
 namespace Modules\Admin\Controllers;
 
 use Illuminate\Http\Request;
+use Modules\Admin\Entities\AdminPermission;
 use Modules\Admin\Entities\AdminRole;
 use Modules\Admin\Filters\AdminRoleFilter;
 use Modules\Admin\Requests\AdminRoleRequest;
@@ -72,10 +73,6 @@ class AdminRoleController extends BaseController
     public function create()
     {
         return $this->okList($this->formData());
-    }
-
-    public function show()
-    {
     }
 
     /**

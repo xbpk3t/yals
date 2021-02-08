@@ -3,7 +3,7 @@
 $api = app('Dingo\Api\Routing\Router');
 
 $params = [
-    'prefix' => 'api',
+    'prefix' => 'common',
     'version' => 'v1.0',
     'namespace' => 'Modules\Common\Controllers',
     'limit' => config('api.rate_limits.sign.limit'),

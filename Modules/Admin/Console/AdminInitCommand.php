@@ -2,15 +2,14 @@
 
 namespace Modules\Admin\Console;
 
-
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Modules\Admin\Entities\AdminPermission;
+use Modules\Admin\Entities\Config;
 use Modules\Admin\Entities\AdminRole;
 use Modules\Admin\Entities\AdminUser;
-use Modules\Admin\Entities\Config;
-use Modules\Admin\Entities\ConfigCategory;
 use Modules\Admin\Entities\VueRouter;
+use Modules\Admin\Entities\ConfigCategory;
+use Modules\Admin\Entities\AdminPermission;
 
 class AdminInitCommand extends Command
 {
@@ -171,8 +170,6 @@ class AdminInitCommand extends Command
      * @param array $fields  字段
      * @param array $inserts 值，不带字段的
      * @param array $extra   每列都相同的数据，带字段
-     *
-     * @return array
      */
     protected function combineInserts(array $fields, array $inserts, array $extra): array
     {

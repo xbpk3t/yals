@@ -46,7 +46,6 @@ return [
 //        ],
 //    ],
 
-
 //    'upload' => [
 //        // Disk in `config/filesystem.php`.
 //        'disk' => 'admin',
@@ -93,7 +92,7 @@ return [
         ],
     ],
     'check_route_permission' => true,
-    'check_menu_roles'       => true,
+    'check_menu_roles' => true,
     'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
     'layout' => ['sidebar-mini', 'sidebar-collapse'],
     'login_background_image' => '',
