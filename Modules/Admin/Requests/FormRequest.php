@@ -23,8 +23,6 @@ class FormRequest extends \Illuminate\Foundation\Http\FormRequest
 
     /**
      * 合并数组字段中元素的错误, 到数组字段的错误中.
-     *
-     * @param Validator $validator
      */
     protected function mergeArrayError(Validator $validator)
     {

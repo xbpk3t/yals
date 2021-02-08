@@ -42,9 +42,6 @@ class Config extends Model
     /**
      * 通过配置分类标识，获取所有配置.
      *
-     * @param string $categorySlug
-     * @param bool   $onlyValues
-     *
      * @return Config[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
     public static function getByCategorySlug(string $categorySlug, bool $onlyValues = false)

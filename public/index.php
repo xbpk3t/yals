@@ -1,5 +1,6 @@
 <?php
 
+use Dotenv\Dotenv;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Http\Kernel;
 
@@ -45,6 +46,14 @@ require __DIR__ . '/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__ . '/../bootstrap/app.php';
+
+# .env配置多环境
+$app->detectEnvironment(function () use($app) {
+    //获取默认env文件配置要加载的env文件名
+    $envName = trim(file_get_contents($app->environmentPath().'/.env'));
+    $app->loadEnvironmentFrom('.env.'.$envName);
+});
+
 
 $kernel = $app->make(Kernel::class);
 

@@ -2,15 +2,16 @@
 
 namespace Modules\Common\Tests\Feature;
 
-use Illuminate\Support\Facades\Log;
-use Modules\Common\Utils\Filter\FilterProcessChain;
-use Modules\Common\Utils\Filter\SensitiveFilter;
 use Tests\TestCase;
+use Modules\Common\Utils\Filter\SensitiveFilter;
+use Modules\Common\Utils\Filter\FilterProcessChain;
 
+/**
+ * @coversNothing
+ */
 class FilterTest extends TestCase
 {
     use FilterProcessChain;
-
 
     public function testFilter()
     {

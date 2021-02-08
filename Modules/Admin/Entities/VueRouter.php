@@ -3,9 +3,9 @@
 namespace Modules\Admin\Entities;
 
 use Modules\Admin\Utils\Admin;
-use Modules\Admin\Traits\ModelTree;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Modules\Admin\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Admin\Exceptions\VueRouterException;
 

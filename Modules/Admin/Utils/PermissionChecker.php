@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Modules\Admin\Utils;
 
 use Illuminate\Support\Str;
@@ -94,9 +93,6 @@ class PermissionChecker
     /**
      * 请求路径和方法的权限检测.
      *
-     * @param AdminPermission $permission
-     * @param Request         $request
-     *
      * @return bool
      */
     public static function shouldPassThrough(AdminPermission $permission, Request $request)
@@ -131,9 +127,6 @@ class PermissionChecker
 
     /**
      * 检测请求的方法和路径是否匹配特定值
-     *
-     * @param array   $match
-     * @param Request $request
      *
      * @return bool
      */

@@ -5,9 +5,9 @@
 /vendor
 /.idea
 
-.env
+#.env
+.env.dev
 .env.backup
-.phpunit.result.cache
 
 docker-compose.override.yml
 Homestead.json
@@ -16,3 +16,4 @@ npm-debug.log
 yarn-error.log
 
 .php_cs.cache
+.phpunit.result.cache

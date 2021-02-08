@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Fruitcake\Cors\HandleCors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -15,11 +16,11 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
-        \Modules\Admin\Http\Middleware\TrustProxies::class,
+//        \Modules\Admin\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
-        \Modules\Admin\Http\Middleware\PreventRequestsDuringMaintenance::class,
+//        \Modules\Admin\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \Modules\Admin\Http\Middleware\TrimStrings::class,
+//        \Modules\Admin\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
@@ -53,14 +54,16 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+//        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,
+//        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
+
+        'cors' => HandleCors::class,
     ];
 }

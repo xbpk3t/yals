@@ -2,8 +2,6 @@
 
 namespace Modules\Admin\Middleware;
 
-use Modules\Admin\Middleware\PermissionMiddleware;
-
 class AdminPermission extends PermissionMiddleware
 {
     protected $urlWhitelist = [

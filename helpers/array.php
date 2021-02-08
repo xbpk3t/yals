@@ -448,4 +448,3 @@ function mapFlatten($items)
 
     return $result;
 }
-

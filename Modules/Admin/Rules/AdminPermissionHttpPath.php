@@ -3,8 +3,8 @@
 namespace Modules\Admin\Rules;
 
 use Illuminate\Support\Str;
-use Modules\Admin\Entities\AdminPermission;
 use Illuminate\Contracts\Validation\Rule;
+use Modules\Admin\Entities\AdminPermission;
 
 class AdminPermissionHttpPath implements Rule
 {

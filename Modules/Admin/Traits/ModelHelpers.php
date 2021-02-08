@@ -34,9 +34,6 @@ trait ModelHelpers
     /**
      * 应用过滤器.
      *
-     * @param Builder $builder
-     * @param Filter  $filter
-     *
      * @return mixed
      */
     public function scopeFilter(Builder $builder, Filter $filter)

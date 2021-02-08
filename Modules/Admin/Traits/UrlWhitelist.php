@@ -6,8 +6,6 @@ trait UrlWhitelist
 {
     /**
      * 获取 url 白名单.
-     *
-     * @return array
      */
     protected function urlWhitelist(): array
     {

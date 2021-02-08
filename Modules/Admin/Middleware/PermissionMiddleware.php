@@ -2,12 +2,12 @@
 
 namespace Modules\Admin\Middleware;
 
-use Modules\Admin\Utils\Admin;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Modules\Admin\Utils\Admin;
 use Modules\Admin\Traits\UrlWhitelist;
-use Modules\Admin\Entities\AdminPermission;
 use Modules\Admin\Utils\PermissionChecker;
+use Modules\Admin\Entities\AdminPermission;
 
 abstract class PermissionMiddleware
 {
@@ -24,9 +24,7 @@ abstract class PermissionMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
-     * @param array                    $args
+     * @param array $args
      *
      * @return mixed
      */
@@ -56,8 +54,6 @@ abstract class PermissionMiddleware
 
     /**
      * 如果路由的中间件组中, 有以 'admin.permission:' 开头的, 说明是单独设置了权限, 要优先处理.
-     *
-     * @param Request $request
      *
      * @return bool
      */

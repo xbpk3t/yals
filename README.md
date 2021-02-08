@@ -12,8 +12,8 @@
     5. 封装好的Exception异常类
     6. 后置中间件记录每条请求的参数和响应
 2. 后台
-    1. CORS
-    2. 后台用户系统使用casbin实现RBAC
+    1. CORS😀
+    2. RBAC
     3. 后台log
 3. 通用功能
     1. 文件上传(七牛云、上传文件表)😀
@@ -25,7 +25,7 @@
     1. laravel分模块的最佳实践😀
     2. MRSC模型(不写)
     3. swagger(laravel的swagger不好用，不写)
-    4. 支持切换dev、test、prod环境配置
+    4. 支持切换dev、test、prod环境配置😀
     5. 支持项目初始化
         1. 数据库迁移工具(本身jwt需要的user表，也需要迁移工具)
         2. 更新goutils等引入拓展包的版本

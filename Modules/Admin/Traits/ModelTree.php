@@ -23,8 +23,6 @@ trait ModelTree
     /**
      * 排除指定的 id，排除后，该 id 和其子孙记录，都会排除.
      *
-     * @param int $id
-     *
      * @return $this
      */
     public function treeExcept(int $id)
@@ -36,8 +34,6 @@ trait ModelTree
 
     /**
      * 构建嵌套数组.
-     *
-     * @return array
      */
     public function toTree(): array
     {
@@ -83,10 +79,6 @@ trait ModelTree
 
     /**
      * toTree 的反向操作.
-     *
-     * @param array $tree
-     *
-     * @return array
      */
     public function flatten(array $tree): array
     {
@@ -99,6 +91,50 @@ trait ModelTree
         }
 
         return $flatten;
+    }
+
+    /**
+     * 构建嵌套数组.
+     *
+     * @param int $parentId
+     */
+    public function buildNestedArray(array $nodes = [], $parentId = 0): array
+    {
+        $branch = [];
+        if (empty($nodes)) {
+            $nodes = $this->allNodes();
+        }
+
+        static $parentIds;
+        $parentIds = $parentIds ?: array_flip(array_column($nodes, $this->parentColumn()));
+
+        foreach ($nodes as $node) {
+            if ($this->ignoreTreeNode($node)) {
+                continue;
+            }
+
+            if ($node[$this->parentColumn()] == $parentId) {
+                $children = $this->buildNestedArray($nodes, $node[$this->idColumn()]);
+                // 没有子菜单也显示一个空的数组，避免前端没有 children 时，不能响应式
+                $node['children'] = $children;
+                $branch[] = $node;
+            }
+        }
+
+        return $branch;
+    }
+
+    /**
+     * @return Builder|mixed
+     */
+    public function allNodesQuery(): Builder
+    {
+        return static::query()
+            ->when($this->except, function (Builder $query) {
+                $query->where($this->idColumn(), '<>', $this->except)
+                    ->where($this->parentColumn(), '<>', $this->except);
+            })
+            ->orderBy($this->orderColumn());
     }
 
     protected function parentColumn()
@@ -117,44 +153,7 @@ trait ModelTree
     }
 
     /**
-     * 构建嵌套数组.
-     *
-     * @param array $nodes
-     * @param int   $parentId
-     *
-     * @return array
-     */
-    public function buildNestedArray(array $nodes = [], $parentId = 0): array
-    {
-        $branch = [];
-        if (empty($nodes)) {
-            $nodes = $this->allNodes();
-        }
-
-        static $parentIds;
-        $parentIds = $parentIds ?: array_flip(array_column($nodes, $this->parentColumn()));
-
-        foreach ($nodes as $node) {
-
-            if ($this->ignoreTreeNode($node)) {
-                continue;
-            }
-
-            if ($node[$this->parentColumn()] == $parentId) {
-                $children = $this->buildNestedArray($nodes, $node[$this->idColumn()]);
-                // 没有子菜单也显示一个空的数组，避免前端没有 children 时，不能响应式
-                $node['children'] = $children;
-                $branch[] = $node;
-            }
-        }
-
-        return $branch;
-    }
-
-    /**
      * 按排序查出所有记录.
-     *
-     * @return array
      */
     protected function allNodes(): array
     {
@@ -162,24 +161,9 @@ trait ModelTree
     }
 
     /**
-     * @return Builder|mixed
-     */
-    public function allNodesQuery(): Builder
-    {
-        return static::query()
-            ->when($this->except, function (Builder $query) {
-                $query->where($this->idColumn(), '<>', $this->except)
-                    ->where($this->parentColumn(), '<>', $this->except);
-            })
-            ->orderBy($this->orderColumn());
-    }
-
-    /**
      * 是否跳过节点的处理.
      *
      * @param array $node 当前节点
-     *
-     * @return bool
      */
     protected function ignoreTreeNode(array $node): bool
     {

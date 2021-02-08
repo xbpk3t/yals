@@ -6,8 +6,7 @@ $params = [
     'prefix' => 'api',
     'version' => 'v1.0',
     'namespace' => 'Modules\Admin\Controllers',
-//    'middleware' => ['cors'],
-    'middleware' => ['api.throttle'],
+    'middleware' => ['api.throttle', 'cors'],
     'limit' => config('api.rate_limits.sign.limit'),
     'expires' => config('api.rate_limits.sign.expires'),
 ];

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Modules\Admin\Utils;
 
 use Illuminate\Support\Collection;
@@ -71,8 +70,6 @@ trait HasPermissions
 
     /**
      * 判断是不是特定的角色.
-     *
-     * @param string $role
      *
      * @return bool
      */

@@ -2,8 +2,8 @@
 
 namespace Modules\Admin\Requests;
 
-use Modules\Admin\Utils\Admin;
 use Illuminate\Support\Arr;
+use Modules\Admin\Utils\Admin;
 
 class AdminUserProfileRequest extends AdminUserRequest
 {

@@ -10,7 +10,6 @@ trait RestfulResponse
      * 返回 201 已创建 响应.
      *
      * @param string|array|null $data
-     * @param array             $headers
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -21,8 +20,6 @@ trait RestfulResponse
 
     /**
      * 返回 204 无内容 响应.
-     *
-     * @param array $headers
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -35,7 +32,6 @@ trait RestfulResponse
      * 返回 200 OK 响应.
      *
      * @param mixed $data
-     * @param array $headers
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -50,8 +46,6 @@ trait RestfulResponse
 
     /**
      * 返回 400 Bad Request 响应.
-     *
-     * @param string $message
      *
      * @return \Illuminate\Http\JsonResponse
      */

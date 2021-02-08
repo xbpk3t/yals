@@ -25,12 +25,6 @@ class CouponTemplate
 
     /**
      * 用来包装一下接口类里创建红包的方法.
-     *
-     * @param CouponInterface $coupon
-     * @param int             $userId
-     * @param int             $couponId
-     *
-     * @return object
      */
     public function provider(CouponInterface $coupon, int $userId, int $couponId): object
     {

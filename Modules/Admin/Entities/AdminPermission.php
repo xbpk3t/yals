@@ -4,11 +4,10 @@ namespace Modules\Admin\Entities;
 
 class AdminPermission extends Model
 {
-    protected $table = 'admin_permission';
-
     public static $httpMethods = [
         'GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD',
     ];
+    protected $table = 'admin_permission';
     protected $fillable = ['name', 'slug', 'http_method', 'http_path'];
 
     public function setHttpMethodAttribute($method)
