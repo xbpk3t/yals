@@ -64,7 +64,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return SmsApi
+     * @return Api\YunpianApi
      */
     public function sms()
     {
@@ -72,7 +72,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return VideoSmsApi
+     * @return Api\YunpianApi
      */
     public function vsms()
     {
@@ -80,7 +80,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return UserApi
+     * @return Api\YunpianApi
      */
     public function user()
     {
@@ -88,7 +88,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return VoiceApi
+     * @return Api\YunpianApi
      */
     public function voice()
     {
@@ -96,7 +96,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return SignApi
+     * @return Api\YunpianApi
      */
     public function sign()
     {
@@ -104,7 +104,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return TplApi
+     * @return Api\YunpianApi
      */
     public function tpl()
     {
@@ -112,7 +112,7 @@ class YunpianClient implements YunpianConstant
     }
 
     /**
-     * @return FlowApi
+     * @return Api\YunpianApi
      */
     public function flow()
     {

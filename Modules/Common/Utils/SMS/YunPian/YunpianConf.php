@@ -30,21 +30,13 @@ class YunpianConf implements YunpianConstant
                 $this->conf[$key] = $value;
             }
         }
-
-        if (isset($apikey)) {
-            $this->conf[self::YP_APIKEY] = $apikey;
-        }
+        $this->conf[self::YP_APIKEY] = $apikey;
 
         return $this;
     }
 
     /**
-     * load yunpian.ini to initialize YunpianConf firstly:
-     * <p>.
-     *
-     * </p>
-     *
-     * @return Yunpian\Sdk\YunpianConf
+     * @return $this
      */
     public function init()
     {

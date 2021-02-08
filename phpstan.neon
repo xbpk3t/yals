@@ -1,0 +1,16 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - config
+        - app
+        - Modules\
+    # The level 8 is the highest level
+    level: 4
+    excludePaths:
+        - ./*/*/FileToBeExcluded.php
+    ignoreErrors:
+        - '#\|null but return statement is missing.#'
+    checkMissingIterableValueType: false
