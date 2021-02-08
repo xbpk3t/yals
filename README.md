@@ -1,7 +1,8 @@
 # laravel-starter
 
-## 基本功能
+把日常开发中的常用功能抽出来做一个starter，避免每次开新项目时耗费的大量重复工作，该repo会长期维护。在使用中如有bug或体验问题，请提issue。
 
+## 基本功能
 
 1. api模块
     1. dingo😀
@@ -17,7 +18,7 @@
     2. RBAC😀
     3. 后台log-后置中间件😀
 3. common模块
-    1. 文件上传(七牛云、上传文件表)😀
+    1. 文件上传(七牛云、并记录附件)😀
     2. 短信发送😀
     3. redis常用操作`RedisService`、redis锁`RedisLock`😀
     4. 敏感词功能😀
