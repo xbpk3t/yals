@@ -1,6 +1,7 @@
 # laravel-starter
 
-把日常开发中的常用功能抽出来做一个starter，避免每次开新项目时耗费的大量重复工作，该repo会长期维护。在使用中如有bug或体验问题，请提issue。
+把日常开发中的常用功能抽出来做一个starter，避免每次开新项目时耗费的大量重复工作，该repo会长期维护，欢迎大家star。在使用中如有bug或体验问题，请提issue。
+
 
 ## 基本功能
 
@@ -49,8 +50,8 @@
 
 1. *clone项目*。`gcl git@github.com:x1a0xv4n/laravel-starter.git`
 2. *切换分支*。切换分支到对应laravel版本，master分支默认为laravel最新版本`git checkout -b origin/target-version-branch`
-3. *配置文件*。开发环境下，请复制.env.prod为.env.dev，并填写dingo的基本配置，如有问题，请发issue。
-4. sql文件。执行根目录下的laravel_starter.sql。
+3. *配置文件*。开发环境下，请复制`.env.prod`为`.env.dev`，并填写基本配置如数据库、redis、dingo等，如有问题，请发issue。
+4. sql文件。执行根目录下的`laravel_starter.sql`。
 
 
 
@@ -61,6 +62,12 @@
 
 ## changelog
 
+### v0.3
+
+1. 根据laravel-admin的`system-media`改一下自己的文件上传功能、文件分类。'filename', 'ext', 'category_id', 'path', 'size', 'mime_type' 
+2. api模块接口的RSA加密 
+3. docker-compose
+4. 项目初始化
 
 
 
