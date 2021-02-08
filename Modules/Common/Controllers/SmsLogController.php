@@ -9,6 +9,11 @@ class SmsLogController extends BaseController
 {
     public function sendSms(SendSmsRequest $request)
     {
-        SmsService::sms($request->mobile, smsCode());
+        $res = SmsService::sms($request->mobile, smsCode());
+        if ($res) {
+            return $this->okMsg('短信发送成功');
+        }
+
+        return $this->okMsg('短信发送失败');
     }
 }

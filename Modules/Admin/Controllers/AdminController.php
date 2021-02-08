@@ -2,15 +2,49 @@
 
 namespace Modules\Admin\Controllers;
 
-use Illuminate\Routing\Controller;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Modules\Admin\Utils\Admin;
+use Modules\Common\Controllers\BaseController;
+use Illuminate\Http\Request;
 
-class AdminController extends Controller
+
+class AdminController extends BaseController
 {
-//    use Authenticatable;
+    use AuthenticatesUsers;
 
-    public function login()
+    public function username()
     {
-        return 1;
+        return 'username';
+    }
+
+    public function logout()
+    {
+        $this->guard()->logout();
+
+        return $this->noContent();
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $res = [
+            'token' => $this->guard()->getToken()->get(),
+            'token_type' => 'bearer',
+            'expired_in' => $this->guard()->factory()->getTTL() * 60,
+        ];
+
+        return $this->okList($res);
+    }
+
+    protected function attemptLogin(Request $request)
+    {
+        return $this->guard()->attempt($this->credentials($request));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Auth\Guard|\Tymon\JWTAuth\JWTGuard|\Tymon\JWTAuth\JWT
+     */
+    protected function guard()
+    {
+        return Admin::guard();
     }
 }

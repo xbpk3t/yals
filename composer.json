@@ -16,6 +16,7 @@
         "jacobcyl/ali-oss-storage": "^2.1",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.2",
         "nwidart/laravel-modules": "^8.2",
         "tymon/jwt-auth": "^1.0",
         "zgldh/qiniu-laravel-storage": "^0.10.3"

@@ -7,7 +7,7 @@ use Modules\Common\Utils\SMS\YunPian\YunpianClient;
 
 class SmsService
 {
-    public static function sms(string $mobile, string $code)
+    public static function sms(string $mobile, string $code): bool
     {
         $smsDriver = config('services.sms.default');
 
@@ -29,9 +29,11 @@ class SmsService
 
                 // 入库
                 $smsLog->saveLog($mobile, $text, $code, 1, $response);
+                if ($res->isSucc()) {
+                    return true;
+                }
 
-                abort_if(!$res->isSucc(), 200, '发送短信错误');
-                // no break
+                return false;
             default:
                 abort(200, '暂不支持该短信通道');
         }

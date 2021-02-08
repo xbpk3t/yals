@@ -45,6 +45,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'jwt',
+            'provider' => 'admin-users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -67,13 +73,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Modules\Base\Entities\User::class,
+            // 这里写'table' => 'users'或者'model' => 对应model
+            'model' => \Modules\Api\Entities\User::class
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admin-users' => [
+            'driver' => 'eloquent',
+            'model' => \Modules\Admin\Entities\AdminUser::class
+        ]
     ],
 
     /*

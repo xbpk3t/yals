@@ -10,6 +10,7 @@ class UploadFileController extends BaseController
     public function upload(UploadFileRequest $request)
     {
         $res = QiNiu::uploadImg($request->file);
-        dd($res);
+
+        return $this->okString($res);
     }
 }
