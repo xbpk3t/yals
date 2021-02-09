@@ -34,6 +34,20 @@ return [
     */
 
     'channels' => [
+
+        // 所有请求log
+        'request' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/request.log'),
+            'level' => 'info',
+            'days' => 5,
+            'tap' => [\Modules\Common\Logging\CustomizeFormatter::class],
+
+//            'handler' => StreamHandler::class,
+//            'formatter' => JsonFormatter::class,
+            'value_max_length' => env('REQUEST_LOG_VALUE_MAX_LENGTH', 300),
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

@@ -26,7 +26,6 @@ $api->group(array_merge($params, $middleware1), function ($api) {
 
 // 需要登录的接口
 $api->group(array_merge($params, $middleware2), function ($api) {
-
     $api->group(['prefix' => '/auth'], function ($api) {
         // 当前用户及其角色、权限
         $api->get('user1', 'AdminController@currentUser')->name('auth.current');

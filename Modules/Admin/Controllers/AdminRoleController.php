@@ -3,9 +3,9 @@
 namespace Modules\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Admin\Entities\AdminPermission;
 use Modules\Admin\Entities\AdminRole;
 use Modules\Admin\Filters\AdminRoleFilter;
+use Modules\Admin\Entities\AdminPermission;
 use Modules\Admin\Requests\AdminRoleRequest;
 use Modules\Admin\Resources\AdminRoleResource;
 use Modules\Common\Controllers\BaseController;

@@ -4,6 +4,7 @@ namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
 use Modules\Admin\Middleware\LogOperation;
+use App\Http\Middleware\AvoidRepeatRequest;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
 //        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
 
         'cors' => HandleCors::class,
+        'avoid.repeat' => AvoidRepeatRequest::class,
     ];
 }

@@ -15,6 +15,7 @@ class UploadFileRequest extends ApiRequest
     {
         return [
             'file' => ['required', 'image', 'max:2000'],
+            'category' => ['required', 'string'],
         ];
     }
 }

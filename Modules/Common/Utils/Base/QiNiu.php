@@ -2,18 +2,82 @@
 
 namespace Modules\Common\Utils\Base;
 
+use Qiniu\Etag;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use zgldh\QiniuStorage\QiniuStorage;
 
 class QiNiu
 {
-    // 图片单传
-    public static function uploadImg($img)
+    protected $client_ip = '127.0.0.1';
+
+    /**
+     * 单张图片上传.
+     */
+    public function saveFiles(Request $request): array
+    {
+        $files = $request->file();
+        $category = $request->category;
+
+        $files = array_map(function (UploadedFile $file) use ($category) {
+            return $this->put($file, $category);
+        }, $files);
+
+        return $files;
+    }
+
+    private function put(UploadedFile $file, string $category)
     {
         $disk = QiniuStorage::disk('qiniu');
-        $imgFile = $disk->put('file.jpg', $img);
+        $ext = $file->getClientOriginalExtension();
+        $realPath = $file->getRealPath();
+        $key = Etag::sum($realPath);
 
-        return $disk->downloadUrl($imgFile)->getUrl();
+        $fileName = sprintf('%s.%s', $key[0], $ext);
+        $contents = @file_get_contents($realPath);
+        $result = $disk->put($fileName, $contents);
+
+        if (!$result) {
+            abort(400, '文件上传失败');
+        }
+        $md5 = md5_file($file->getRealPath());
+
+        $download = $disk->downloadUrl($category . '/' . $fileName);
+
+        return [
+            'filename' => $fileName,
+            'ext' => $ext,
+            'size' => $file->getSize(),
+            'mime_type' => $file->getMimeType(),
+            'md5' => $md5,
+            'url' => $download->getUrl(),
+        ];
     }
+
+//    public function uploads(Request $request)
+//    {
+//        $file = $request->file('file');
+//        $this->client_ip = $request->ip();
+//
+//        if (!$file->isValid()) {
+//            return ['status' => '400'];
+//        }
+//
+//        if (isset($fileObject['path'])) {
+//            $path = cdn($fileObject['path']);
+//            return ['status' => '200', 'filename' => $path, 'url' => $path];
+//        }
+//
+//        $fileObject = $this->put($file);
+//        return ['status' => '200', 'filename' => $fileObject, 'url' => $fileObject];
+//    }
+//
+//    public function remoteAllFiles($path = '/')
+//    {
+//        $disk = QiniuStorage::disk('qiniu');
+//        $files = $disk->allFiles($path);
+//        return $files;
+//    }
 
 //    /**
 //     * @param $files

@@ -3,11 +3,11 @@
 namespace Modules\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Admin\Requests\AdminUserProfileRequest;
-use Modules\Admin\Resources\AdminUserResource;
 use Modules\Admin\Utils\Admin;
+use Modules\Admin\Resources\AdminUserResource;
 use Modules\Common\Controllers\BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Modules\Admin\Requests\AdminUserProfileRequest;
 
 class AdminController extends BaseController
 {
@@ -18,17 +18,6 @@ class AdminController extends BaseController
         $this->guard()->logout();
 
         return $this->noContent();
-    }
-
-    protected function sendLoginResponse(Request $request)
-    {
-        $res = [
-            'token' => $this->guard()->getToken()->get(),
-            'token_type' => 'bearer',
-            'expired_in' => $this->guard()->factory()->getTTL() * 60,
-        ];
-
-        return $this->okList($res);
     }
 
     // 修改用户名、密码、头像
@@ -59,6 +48,17 @@ class AdminController extends BaseController
                 ->gatherAllPermissions()
                 ->onlyRolePermissionSlugs()
         );
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {
+        $res = [
+            'token' => $this->guard()->getToken()->get(),
+            'token_type' => 'bearer',
+            'expired_in' => $this->guard()->factory()->getTTL() * 60,
+        ];
+
+        return $this->okList($res);
     }
 
     protected function attemptLogin(Request $request)

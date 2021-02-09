@@ -3,7 +3,6 @@
 namespace Modules\Admin\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Admin\Utils\Admin;
 use Modules\Admin\Entities\AdminRole;
 use Modules\Admin\Entities\AdminUser;
 use Modules\Admin\Filters\AdminUserFilter;
@@ -11,11 +10,9 @@ use Modules\Admin\Entities\AdminPermission;
 use Modules\Admin\Requests\AdminUserRequest;
 use Modules\Admin\Resources\AdminUserResource;
 use Modules\Common\Controllers\BaseController;
-use Modules\Admin\Requests\AdminUserProfileRequest;
 
 class AdminUserController extends BaseController
 {
-
     // 后台用户列表
     public function index(AdminUserFilter $filter)
     {
@@ -44,8 +41,6 @@ class AdminUserController extends BaseController
         return $this->created(AdminUserResource::make($user));
     }
 
-
-
     // 展示后台用户详情
     public function show(AdminUser $adminUser)
     {
@@ -53,7 +48,6 @@ class AdminUserController extends BaseController
 
         return $this->okObject(AdminUserResource::make($adminUser));
     }
-
 
     public function update(AdminUserRequest $request, AdminUser $adminUser)
     {
