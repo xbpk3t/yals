@@ -10,7 +10,10 @@ $params = [
     'limit' => config('api.rate_limits.sign.limit'),
     'expires' => config('api.rate_limits.sign.expires'),
 ];
-$middleware1 = ['middleware' => ['api.throttle']];
+$middleware1 = ['middleware' => [
+    'api.throttle',
+//    'api.signature'
+]];
 $middleware2 = ['middleware' => [
     'api.throttle',
     'jwt.auth',

@@ -38,7 +38,7 @@ class RedisUtils
      *
      * @return string
      */
-    public function deleteRedisKeys(string ...$redisKeys)
+    public function deleteRedisKeys(string ...$redisKeys): bool
     {
         try {
             $list = $this->matchKeys($redisKeys);
@@ -49,12 +49,10 @@ class RedisUtils
 
             $this->redis->del($list);
 
-            return 'success';
+            return true;
         } catch (\Exception $e) {
-            return 'fail';
+            return false;
         }
-
-//        dd($redisKeyList);
     }
 
     /**

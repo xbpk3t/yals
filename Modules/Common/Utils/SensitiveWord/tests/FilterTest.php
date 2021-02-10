@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Common\Tests\Feature;
+namespace Modules\Common\Utils\SensitiveWord\tests;
 
 use Tests\TestCase;
-use Modules\Common\Utils\Filter\SensitiveFilter;
-use Modules\Common\Utils\Filter\FilterProcessChain;
+use Modules\Common\Utils\SensitiveWord\SensitiveFilter;
+use Modules\Common\Utils\SensitiveWord\FilterProcessChain;
 
 /**
  * @coversNothing

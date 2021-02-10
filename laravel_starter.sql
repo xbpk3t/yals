@@ -273,14 +273,15 @@ CREATE TABLE `tz_sms_log` (
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tz_upload_file` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `file_path` varchar(255) DEFAULT NULL COMMENT '文件路径',
-  `file_type` varchar(255) DEFAULT NULL COMMENT '文件类型',
-  `file_size` varchar(255) DEFAULT NULL COMMENT '文件大小',
-  `file_key` varchar(255) DEFAULT NULL COMMENT '文件key',
-  `file_hash` varchar(255) DEFAULT NULL COMMENT '文件hash',
+  `filename` varchar(255) DEFAULT NULL COMMENT '文件名',
+  `ext` varchar(255) DEFAULT NULL COMMENT '文件后缀',
+  `url` varchar(255) DEFAULT NULL COMMENT '七牛云url',
+  `size` varchar(255) DEFAULT NULL COMMENT '文件大小',
+  `md5` varchar(255) DEFAULT NULL,
+  `mime_type` varchar(255) DEFAULT NULL COMMENT '文件mime_type',
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件附件表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='文件附件表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

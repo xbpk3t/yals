@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Common\Utils\Filter;
+namespace Modules\Common\Utils\SensitiveWord;
 
 trait FilterProcessChain
 {

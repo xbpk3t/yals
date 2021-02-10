@@ -13,7 +13,7 @@
     3. fractal😀
     4. RSA接口加密(前台用户系统借鉴gadmin，使用RSA加密)
     5. 封装好的Exception异常类
-    6. 记录每条请求的参数和响应-后置中间件
+    6. 记录每条请求的参数和响应-后置中间件😀
 2. admin模块
     1. CORS😀
     2. RBAC😀
@@ -30,12 +30,11 @@
     3. swagger(php的swagger不好用，不写)😀
     4. 支持切换dev、test、prod环境配置😀
     5. 支持项目初始化
-        1. 数据库迁移工具(本身jwt需要的user表，也需要迁移工具)
-        2. 更新goutils等引入拓展包的版本
+        1. 数据库迁移工具
     6. laravel错误日志的最佳实践
 5. 代码质量
-    1. php-cs-fixer`php-cs-fixer fix $PWD --config=cs.php`
-    2. 静态检测工具:基于phpstan实现的larastan`./vendor/bin/phpstan analyse`
+    1. php-cs-fixer😀`php-cs-fixer fix $PWD --config=cs.php`
+    2. 静态检测工具😀:基于phpstan实现的larastan`./vendor/bin/phpstan analyse`
 5. 常用功能
     1. 第三方登录(微信登录、qq登录)
     2. 第三方支付(微信支付、支付宝)
@@ -65,13 +64,14 @@
 ### v0.3
 
 1. 优化文件上传功能😀
-2. api模块接口的RSA加密-后置中间件
+2. api模块接口的RSA加密-后置中间件😀
 3. docker-compose部署
 4. 手动部署也可以直接使用命令初始化项目，提高用户体验
-5. 防止重放攻击的中间件😀
+5. 优化防止重放攻击的中间件😀
 6. 删掉没用的代码，从框架加载角度，优化一下laravel
 7. 把middleware、config、Exception都按照模块拆开
-8. 压缩图片
+8. 压缩图片😀
+9. 链路追踪: 使用zipkin作为laravel的链路追踪方案
 
 
 

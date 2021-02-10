@@ -52,7 +52,8 @@
         ],
         "files": [
             "helpers/yw.php",
-            "helpers/array.php"
+            "helpers/array.php",
+            "helpers/time.php"
         ]
     },
     "autoload-dev": {

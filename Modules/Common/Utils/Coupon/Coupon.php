@@ -2,7 +2,7 @@
 
 namespace Modules\Common\Utils\Coupon;
 
-use App\Models\V1\CouponList;
+use Modules\Common\Utils\Coupon\CouponList;
 
 class Coupon extends CouponTemplate implements CouponInterface
 {

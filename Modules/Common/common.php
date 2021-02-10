@@ -9,8 +9,13 @@ $params = [
     'limit' => config('api.rate_limits.sign.limit'),
     'expires' => config('api.rate_limits.sign.expires'),
 ];
-$middleware1 = ['middleware' => ['api.throttle']];
-$middleware2 = ['middleware' => ['api.throttle', 'jwt.auth']];
+$middleware1 = ['middleware' => [
+    'api.throttle',
+]];
+$middleware2 = ['middleware' => [
+    'api.throttle',
+    'jwt.auth'
+]];
 
 $api->group(array_merge($params, $middleware1), function ($api) {
     // 不需要登录的接口

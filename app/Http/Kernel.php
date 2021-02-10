@@ -4,7 +4,7 @@ namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
 use Modules\Admin\Middleware\LogOperation;
-use App\Http\Middleware\AvoidRepeatRequest;
+use Modules\Common\Utils\Signature\Middleware\SignatureMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -17,14 +17,16 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
-//        \Modules\Admin\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
-//        \Modules\Admin\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-//        \Modules\Admin\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         LogOperation::class,
+
+
+//        \App\Http\Middleware\TrustHosts::class,
+//        \Modules\Admin\Http\Middleware\TrustProxies::class,
+//        \Modules\Admin\Http\Middleware\PreventRequestsDuringMaintenance::class,
+//        \Modules\Admin\Http\Middleware\TrimStrings::class,
     ];
 
     /**
@@ -34,13 +36,15 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-//            \Modules\Admin\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-//            \Modules\Admin\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+
+//            \Modules\Admin\Http\Middleware\EncryptCookies::class,
+//            \Illuminate\Session\Middleware\AuthenticateSession::class,
+//            \Modules\Admin\Http\Middleware\VerifyCsrfToken::class,
         ],
 
         'api' => [
@@ -64,10 +68,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'cors' => HandleCors::class,
+        'api.signature' => SignatureMiddleware::class,
+
+
 //        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,
 //        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
-
-        'cors' => HandleCors::class,
-        'avoid.repeat' => AvoidRepeatRequest::class,
     ];
 }
