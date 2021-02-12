@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Modules\Common\Utils\Signature\tests;
+namespace Modules\Common\Utils\Signature\Tests;
 
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -10,7 +10,6 @@ use Tests\TestCase;
 class SignatureTest extends TestCase
 {
     protected $nonceKey = 'api:nonce:';
-    protected $redis;
 
     protected $signKeys = [
         'app_id',

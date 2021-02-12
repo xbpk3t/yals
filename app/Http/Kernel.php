@@ -4,6 +4,8 @@ namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
 use Modules\Admin\Middleware\LogOperation;
+use Modules\Common\Utils\ApiEncrypt\AES\AesDecryptMiddleware;
+use Modules\Common\Utils\ApiEncrypt\AES\AesEncryptMiddleware;
 use Modules\Common\Utils\Signature\Middleware\SignatureMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -20,7 +22,8 @@ class Kernel extends HttpKernel
         \Fruitcake\Cors\HandleCors::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        LogOperation::class,
+//        LogOperation::class,
+//        AesEncryptMiddleware::class
 
 
 //        \App\Http\Middleware\TrustHosts::class,
@@ -70,6 +73,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cors' => HandleCors::class,
         'api.signature' => SignatureMiddleware::class,
+        'aes.encrypt' => AesEncryptMiddleware::class,
+        'aes.decrypt' => AesDecryptMiddleware::class,
+        'admin.log' => LogOperation::class
 
 
 //        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,

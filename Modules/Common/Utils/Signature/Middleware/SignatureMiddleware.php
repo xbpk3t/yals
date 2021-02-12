@@ -3,14 +3,11 @@
 namespace Modules\Common\Utils\Signature\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
-use Illuminate\Support\Facades\Redis;
 use Modules\Common\Utils\Signature\Exception\InvalidSignatureException;
 use \Illuminate\Http\Request;
 
-class SignatureMiddleware extends Middleware
+class SignatureMiddleware
 {
     /**
      * The Laravel Application.
@@ -36,7 +33,7 @@ class SignatureMiddleware extends Middleware
      * @return mixed
      * @throws InvalidSignatureException
      */
-    public function handle($request, \Closure $next)
+    public function handle($request, Closure $next)
     {
         $this->validSign($request);
 

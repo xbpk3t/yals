@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Common\Utils\SensitiveWord\tests;
+namespace Modules\Common\Utils\SensitiveWord\Tests;
 
 use Tests\TestCase;
 use Modules\Common\Utils\SensitiveWord\SensitiveFilter;

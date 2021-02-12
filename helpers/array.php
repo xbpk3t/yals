@@ -140,7 +140,7 @@ if (!function_exists('jsonEncode')) {
 if (!function_exists('jsonDecode')) {
     function jsonDecode(string $str): array
     {
-        return json_decode($str);
+        return json_decode($str, true);
     }
 }
 
