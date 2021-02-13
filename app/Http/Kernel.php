@@ -73,12 +73,18 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cors' => HandleCors::class,
         'api.signature' => SignatureMiddleware::class,
-        'aes.encrypt' => AesEncryptMiddleware::class,
         'aes.decrypt' => AesDecryptMiddleware::class,
+        'aes.encrypt' => AesEncryptMiddleware::class,
         'admin.log' => LogOperation::class
 
 
 //        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,
 //        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
+    ];
+
+    protected $middlewarePriority = [
+        // 请求进来，先解密再加密
+        AesDecryptMiddleware::class,
+        AesEncryptMiddleware::class
     ];
 }

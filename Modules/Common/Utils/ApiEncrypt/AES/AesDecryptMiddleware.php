@@ -29,7 +29,7 @@ class AesDecryptMiddleware
      */
     public function handle($request, Closure $next){
 
-        if ($request->getContentType() == null) {
+        if ($request->getContent() == null || $request->getContent() == '') {
             return $next($request);
         }
 
@@ -59,7 +59,6 @@ class AesDecryptMiddleware
      */
     protected function putIn(Request $request, string $content){
 
-//        dd($request, $content, $request->getContentType());
         if ($request->getContentType() === 'json') {
             $request->setJson(new ParameterBag((array) jsonDecode($content)));
         } else {

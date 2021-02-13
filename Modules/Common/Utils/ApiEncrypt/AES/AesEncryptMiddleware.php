@@ -16,6 +16,7 @@ class AesEncryptMiddleware
     {
         $response = $next($request);
 
+        // 只对200进行加密
         if ($response->getStatusCode() != 200) {
             return $response;
         }
@@ -27,7 +28,8 @@ class AesEncryptMiddleware
         if ($response instanceof Response) {
             $value = $response->getContent();
         }
-
         return response(encrypt((string) $value, false));
+//        return response(app()->make(Encrypter::class)
+//            ->encrypt((string) $value, false));
     }
 }
