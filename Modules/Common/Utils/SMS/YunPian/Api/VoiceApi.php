@@ -29,7 +29,6 @@ class VoiceApi extends YunpianApi
     }
 
     /**
-     * @param array $param
      * @return Result|null
      */
     public function send(array $param)
@@ -55,7 +54,6 @@ class VoiceApi extends YunpianApi
     }
 
     /**
-     * @param array $param
      * @return Result|null
      */
     public function pull_status(array $param)

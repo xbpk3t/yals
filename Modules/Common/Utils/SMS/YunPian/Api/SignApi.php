@@ -29,8 +29,8 @@ class SignApi extends YunpianApi
     }
 
     /**
-     * 添加签名API
-     * @param array $param
+     * 添加签名API.
+     *
      * @return Result|null
      */
     public function add(array $param = [])
@@ -54,9 +54,8 @@ class SignApi extends YunpianApi
     }
 
     /**
-     * 修改签名API
+     * 修改签名API.
      *
-     * @param array $param
      * @return Result|null
      */
     public function update(array $param)
@@ -80,9 +79,8 @@ class SignApi extends YunpianApi
     }
 
     /**
-     * 获取签名API
+     * 获取签名API.
      *
-     * @param array $param
      * @return Result|null
      */
     public function get(array $param)

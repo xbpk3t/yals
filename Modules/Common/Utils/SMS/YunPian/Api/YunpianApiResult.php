@@ -4,7 +4,6 @@ namespace Modules\Common\Utils\SMS\YunPian\Api;
 
 use Modules\Common\Utils\SMS\YunPian\Model\Result;
 use Modules\Common\Utils\SMS\YunPian\Constant\Code;
-use Modules\Common\Utils\SMS\YunPian\Constant\YunpianConstant;
 
 interface YunpianApiResult
 {

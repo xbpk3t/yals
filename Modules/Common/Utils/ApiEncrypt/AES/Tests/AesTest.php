@@ -1,13 +1,14 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\AES\Tests;
 
-
+use Tests\TestCase;
 use Illuminate\Http\Request;
 use Modules\Common\Traits\RestfulResponse;
-use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class AesTest extends TestCase
 {
     use RestfulResponse;
@@ -24,6 +25,7 @@ class AesTest extends TestCase
             'aes.encrypt',
         ])->any('/api/sign', function (Request $request) {
             dump($request->all());
+
             return $this->okList(['username' => 'jf']);
         });
     }
@@ -53,13 +55,13 @@ class AesTest extends TestCase
             'userInfo' => [
                 'avatar' => 'https://kernel.taobao.org//2020/11/talking_of_atomic_operations/',
                 'username' => 'jeffcott',
-                'balance' => 8888.88
+                'balance' => 8888.88,
             ],
             'activity' => [
                 'AEP的驱动使用一个称为index block的结构来管理元数据',
-                '写日志算是实现事务最通用的方式了，日志一般分为redo和undo两种日志，为了加快恢复速度，一般还会引入检查点(checkpoint)的概念。在文件系统和数据库的实现中，基本上都能看到事务的身影。'
+                '写日志算是实现事务最通用的方式了，日志一般分为redo和undo两种日志，为了加快恢复速度，一般还会引入检查点(checkpoint)的概念。在文件系统和数据库的实现中，基本上都能看到事务的身影。',
             ],
-            'isPermanent' => true
+            'isPermanent' => true,
         ]);
 
         $en = encrypt($res);

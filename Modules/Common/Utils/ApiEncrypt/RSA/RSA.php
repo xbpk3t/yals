@@ -1,16 +1,13 @@
 <?php
+
 namespace Modules\Common\Utils\ApiEncrypt\RSA;
 
 class RSA
 {
-    /*
-     * Minimum key size bits
-     */
+    // Minimum key size bits
     const MINIMUM_KEY_SIZE = 128;
 
-    /*
-     * Default key size bits
-     */
+    // Default key size bits
     const DEFAULT_KEY_SIZE = 2048;
 
     protected $publicKeyFile;
@@ -26,7 +23,7 @@ class RSA
 
     public function fixKeyArgument($keyFile)
     {
-        if (strpos($keyFile, '/') === 0) {
+        if (0 === mb_strpos($keyFile, '/')) {
             // This looks like a path, let us prepend the file scheme
             return 'file://' . $keyFile;
         }
@@ -34,15 +31,15 @@ class RSA
         return $keyFile;
     }
 
-
     /**
-     * Creates a new RSA key pair with the given key size
+     * Creates a new RSA key pair with the given key size.
      *
-     * @param null $keySize RSA Key Size in bits
+     * @param null $keySize   RSA Key Size in bits
      * @param bool $overwrite Overwrite existing key files
-     * @return bool Result of creation
      *
      * @throws RSAException
+     *
+     * @return bool Result of creation
      */
     public function create($keySize = null, $overwrite = false)
     {
@@ -53,39 +50,39 @@ class RSA
 
         if (!$overwrite) {
             if (
-                (strpos($this->publicKeyFile, 'file://') === 0 && file_exists($this->publicKeyFile)) ||
-                (strpos($this->privateKeyFile, 'file://') === 0 && file_exists($this->privateKeyFile))
+                (0 === mb_strpos($this->publicKeyFile, 'file://') && file_exists($this->publicKeyFile)) ||
+                (0 === mb_strpos($this->privateKeyFile, 'file://') && file_exists($this->privateKeyFile))
             ) {
                 throw new RSAException('OpenSSL: Existing keys found. Remove keys or pass $overwrite == true.');
             }
         }
 
-        $resource = openssl_pkey_new(array(
+        $resource = openssl_pkey_new([
             'private_key_bits' => $keySize,
             'private_key_type' => OPENSSL_KEYTYPE_RSA,
-        ));
+        ]);
 
         $publicKey = openssl_pkey_get_details($resource)['key'];
-        if (strpos($this->publicKeyFile, 'file://') === 0) {
+        if (0 === mb_strpos($this->publicKeyFile, 'file://')) {
             $bytes = file_put_contents($this->publicKeyFile, $publicKey);
         } else {
             $this->publicKeyFile = $publicKey;
-            $bytes = strlen($publicKey);
+            $bytes = mb_strlen($publicKey);
         }
-        if (strlen($publicKey) < 1 || $bytes != strlen($publicKey)) {
-            throw new RSAException("OpenSSL: Error writing PUBLIC key.");
+        if (mb_strlen($publicKey) < 1 || $bytes != mb_strlen($publicKey)) {
+            throw new RSAException('OpenSSL: Error writing PUBLIC key.');
         }
 
         $privateKey = '';
         openssl_pkey_export($resource, $privateKey, $this->password);
-        if (strpos($this->privateKeyFile, 'file://') === 0) {
+        if (0 === mb_strpos($this->privateKeyFile, 'file://')) {
             $bytes = file_put_contents($this->privateKeyFile, $privateKey);
         } else {
             $this->privateKeyFile = $privateKey;
-            $bytes = strlen($privateKey);
+            $bytes = mb_strlen($privateKey);
         }
-        if (strlen($privateKey) < 1 || $bytes != strlen($privateKey)) {
-            throw new RSAException("OpenSSL: Error writing PRIVATE key.");
+        if (mb_strlen($privateKey) < 1 || $bytes != mb_strlen($privateKey)) {
+            throw new RSAException('OpenSSL: Error writing PRIVATE key.');
         }
 
         openssl_pkey_free($resource);
@@ -94,7 +91,7 @@ class RSA
     }
 
     /**
-     * Get public key to be used during encryption and decryption
+     * Get public key to be used during encryption and decryption.
      *
      * @return string Certificate public key string or stream path
      */
@@ -104,7 +101,7 @@ class RSA
     }
 
     /**
-     * Get private key to be used during encryption and decryption
+     * Get private key to be used during encryption and decryption.
      *
      * @return string Certificate private key string or stream path
      */
@@ -114,7 +111,7 @@ class RSA
     }
 
     /**
-     * Set password to be used during encryption and decryption
+     * Set password to be used during encryption and decryption.
      *
      * @param string $password Certificate password
      */
@@ -124,12 +121,13 @@ class RSA
     }
 
     /**
-     * Encrypt data with provided public certificate
+     * Encrypt data with provided public certificate.
      *
      * @param string $data Data to encrypt
-     * @return string Encrypted data
      *
      * @throws RSAException
+     *
+     * @return string Encrypted data
      */
     public function encrypt($data)
     {
@@ -137,22 +135,23 @@ class RSA
         $publicKey = openssl_pkey_get_public($this->publicKeyFile);
 
         if (!$publicKey) {
-            throw new RSAException("OpenSSL: Unable to get public key for encryption. Is the location correct? Does this key require a password?");
+            throw new RSAException('OpenSSL: Unable to get public key for encryption. Is the location correct? Does this key require a password?');
         }
 
         $success = openssl_public_encrypt($data, $encryptedData, $publicKey);
         openssl_free_key($publicKey);
         if (!$success) {
-            throw new RSAException("Encryption failed. Ensure you are using a PUBLIC key.");
+            throw new RSAException('Encryption failed. Ensure you are using a PUBLIC key.');
         }
 
         return $encryptedData;
     }
 
     /**
-     * Encrypt data and then base64_encode it
+     * Encrypt data and then base64_encode it.
      *
      * @param string $data Data to encrypt
+     *
      * @return string Base64-encrypted data
      */
     public function base64Encrypt($data)
@@ -161,17 +160,18 @@ class RSA
     }
 
     /**
-     * Decrypt data with provided private certificate
+     * Decrypt data with provided private certificate.
      *
      * @param string $data Data to encrypt
-     * @return string Decrypted data
      *
      * @throws RSAException
+     *
+     * @return string Decrypted data
      */
     public function decrypt($data)
     {
-        if ($this->privateKeyFile === null) {
-            throw new RSAException("Unable to decrypt: No private key provided.");
+        if (null === $this->privateKeyFile) {
+            throw new RSAException('Unable to decrypt: No private key provided.');
         }
 
         $privateKey = openssl_pkey_get_private($this->privateKeyFile, $this->password);
@@ -182,16 +182,17 @@ class RSA
         $success = openssl_private_decrypt($data, $decryptedData, $privateKey);
         openssl_free_key($privateKey);
         if (!$success) {
-            throw new RSAException("Decryption failed. Ensure you are using (1) a PRIVATE key, and (2) the correct one.");
+            throw new RSAException('Decryption failed. Ensure you are using (1) a PRIVATE key, and (2) the correct one.');
         }
 
         return $decryptedData;
     }
 
     /**
-     * base64_decode data and then decrypt it
+     * base64_decode data and then decrypt it.
      *
      * @param string $data Base64-encoded data to decrypt
+     *
      * @return string Decrypted data
      */
     public function base64Decrypt($data)

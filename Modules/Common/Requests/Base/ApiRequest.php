@@ -2,11 +2,11 @@
 
 namespace Modules\Common\Requests\Base;
 
+use Illuminate\Http\Request;
 use Dingo\Api\Exception\ResourceException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
 
 class ApiRequest extends FormRequest
 {
@@ -20,9 +20,6 @@ class ApiRequest extends FormRequest
         return true;
     }
 
-    /**
-     * @param Validator $validator
-     */
     protected function failedValidation(Validator $validator): void
     {
         if ($this->container['request'] instanceof Request) {

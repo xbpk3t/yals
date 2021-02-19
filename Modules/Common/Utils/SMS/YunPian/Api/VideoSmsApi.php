@@ -29,6 +29,7 @@ class VideoSmsApi extends YunpianApi
 
     /**
      * @param array $param
+     *
      * @return \Modules\Common\Utils\SMS\YunPian\Model\Result|null
      */
     public function addTpl($param = [])
@@ -46,19 +47,19 @@ class VideoSmsApi extends YunpianApi
                 $multipart[] = [
                     'name' => $key,
                     'contents' => $value,
-                    'headers' => ['Content-Type' => "application/json;charset=$charset"]
+                    'headers' => ['Content-Type' => "application/json;charset=$charset"],
                 ];
             } elseif (self::MATERIAL == $key) {
                 $multipart[] = [
                     'name' => $key,
                     'contents' => $value,
-                    'headers' => ['Content-Type' => "application/octet-stream;charset=$charset"]
+                    'headers' => ['Content-Type' => "application/octet-stream;charset=$charset"],
                 ];
             } else {
                 $multipart[] = [
                     'name' => $key,
                     'contents' => $value,
-                    'headers' => ['Content-Type' => "text/plain;charset=$charset"]
+                    'headers' => ['Content-Type' => "text/plain;charset=$charset"],
                 ];
             }
         }
@@ -80,7 +81,9 @@ class VideoSmsApi extends YunpianApi
 
     /**
      * 获取视频短信模版状态
+     *
      * @param array $param
+     *
      * @return \Modules\Common\Utils\SMS\YunPian\Model\Result|null
      */
     public function getTpl($param = [])
@@ -105,7 +108,7 @@ class VideoSmsApi extends YunpianApi
 
     /**
      * 批量发送视频短信
-     * @param array $param
+     *
      * @return \Modules\Common\Utils\SMS\YunPian\Model\Result|null
      */
     public function tplBatchSend(array $param)

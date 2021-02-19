@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\RSA;
-
 
 class RSAException extends \Exception
 {

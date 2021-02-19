@@ -29,8 +29,8 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * 查询流量包
-     * @param array $param
+     * 查询流量包.
+     *
      * @return Result|null
      */
     public function get_package(array $param = [])
@@ -56,8 +56,8 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * 充值流量
-     * @param array $param
+     * 充值流量.
+     *
      * @return Result|null
      */
     public function recharge(array $param = [])
@@ -83,8 +83,8 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * 获取状态报告
-     * @param array $param
+     * 获取状态报告.
+     *
      * @return Result|null
      */
     public function pull_status(array $param = [])

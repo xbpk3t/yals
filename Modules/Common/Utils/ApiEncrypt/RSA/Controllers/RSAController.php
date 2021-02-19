@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\RSA\Controllers;
 
-
 use Illuminate\Http\Request;
+use Modules\Common\Utils\ApiEncrypt\RSA\RSA;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Modules\Common\Utils\ApiEncrypt\RSA\Entities\Secret;
-use Modules\Common\Utils\ApiEncrypt\RSA\RSA;
 
 class RSAController
 {
@@ -17,12 +15,12 @@ class RSAController
     private $serverKey = '';
 
     /**
-     * register API
+     * register API.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request) {
-
+    public function register(Request $request)
+    {
         $input = [];
         if (!$request->input('username')) {
             return response()->json(['failure' => 'username parameter error'], $this->vaildStatus);
@@ -52,31 +50,24 @@ class RSAController
     }
 
     /**
-     * getServerKey API
+     * getServerKey API.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getServerKey() {
-
+    public function getServerKey()
+    {
         $this->serverKey = config('app.key');
 
         return response()->json(['success' => $this->serverKey], $this->successStatus);
     }
 
-    private function validateStoreSignature($request) {
-        $input['publicKey'] = $request->input('key');
-        $input['username'] = $request->input('username');
-
-        return Secret::validateStoreSignature($input);
-    }
-
     /**
-     * storeSecret API
+     * storeSecret API.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function storeSecret(Request $request) {
-
+    public function storeSecret(Request $request)
+    {
         if (!$this->validateStoreSignature($request)) {
             return response()->json(['failure' => 'Request Validation failed.'], $this->vaildStatus);
         }
@@ -120,11 +111,12 @@ class RSAController
     }
 
     /**
-     * getSecret API
+     * getSecret API.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getSecret(Request $request) {
+    public function getSecret(Request $request)
+    {
         if (!$request->input('username')) {
             return response()->json(['failure' => 'username parameter error'], $this->vaildStatus);
         }
@@ -156,12 +148,20 @@ class RSAController
             return response()->json(['failure' => 'Decryption failed'], $this->vaildStatus);
         }
 
-        $publicKey = str_replace("\\n", "\n", $messages->publicKey);
+        $publicKey = str_replace('\\n', "\n", $messages->publicKey);
 
         $rsa = new RSA($publicKey);
-        $ret = "-----start-----" . $ret . "-----end-----";
+        $ret = '-----start-----' . $ret . '-----end-----';
         $encryptedMessage = $rsa->base64Encrypt($ret);
 
         return response()->json(['success' => $encryptedMessage], $this->successStatus);
+    }
+
+    private function validateStoreSignature($request)
+    {
+        $input['publicKey'] = $request->input('key');
+        $input['username'] = $request->input('username');
+
+        return Secret::validateStoreSignature($input);
     }
 }

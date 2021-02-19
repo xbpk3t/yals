@@ -4,10 +4,10 @@ namespace App\Http;
 
 use Fruitcake\Cors\HandleCors;
 use Modules\Admin\Middleware\LogOperation;
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Modules\Common\Utils\ApiEncrypt\AES\AesDecryptMiddleware;
 use Modules\Common\Utils\ApiEncrypt\AES\AesEncryptMiddleware;
 use Modules\Common\Utils\Signature\Middleware\SignatureMiddleware;
-use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
@@ -24,7 +24,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 //        LogOperation::class,
 //        AesEncryptMiddleware::class
-
 
 //        \App\Http\Middleware\TrustHosts::class,
 //        \Modules\Admin\Http\Middleware\TrustProxies::class,
@@ -43,7 +42,6 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-
 
 //            \Modules\Admin\Http\Middleware\EncryptCookies::class,
 //            \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -75,8 +73,7 @@ class Kernel extends HttpKernel
         'api.signature' => SignatureMiddleware::class,
         'aes.decrypt' => AesDecryptMiddleware::class,
         'aes.encrypt' => AesEncryptMiddleware::class,
-        'admin.log' => LogOperation::class
-
+        'admin.log' => LogOperation::class,
 
 //        'auth' => \Modules\Admin\Http\Middleware\Authenticate::class,
 //        'guest' => \Modules\Admin\Http\Middleware\RedirectIfAuthenticated::class,
@@ -85,6 +82,6 @@ class Kernel extends HttpKernel
     protected $middlewarePriority = [
         // 请求进来，先解密再加密
         AesDecryptMiddleware::class,
-        AesEncryptMiddleware::class
+        AesEncryptMiddleware::class,
     ];
 }

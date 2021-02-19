@@ -44,9 +44,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
      */
     private $charset;
 
-    /**
-     * @param YunpianClient $clnt
-     */
     public function init(YunpianClient $clnt)
     {
         $this->clnt = $clnt;
@@ -63,7 +60,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     abstract public function name();
 
     /**
-     * @param YunpianClient|null $clnt
      * @return $this|YunpianClient
      */
     public function client(YunpianClient $clnt = null)
@@ -77,7 +73,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     }
 
     /**
-     * @param string $host
      * @return $this|string
      */
     public function host(string $host)
@@ -103,7 +98,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     }
 
     /**
-     * @param string $path
      * @return $this|string
      */
     public function path(string $path)
@@ -114,7 +108,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     }
 
     /**
-     * @param string $apikey
      * @return $this|string
      */
     public function apikey(string $apikey)
@@ -168,7 +161,7 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
         return Code::OK == $code ? $h->succ($code, $rsp, $r) : $h->fail($code, $rsp, $r);
     }
 
-    public function code(array &$rsp, $version = YunpianConstant::VERSION_V2):int
+    public function code(array &$rsp, $version = YunpianConstant::VERSION_V2): int
     {
         $code = Code::UNKNOWN_EXCEPTION;
 
@@ -185,9 +178,6 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     }
 
     /**
-     * @param array $param
-     * @param array $must
-     * @param Result|null $r
      * @return Result|null
      */
     public function verifyParam(array &$param, array &$must, Result $r = null)

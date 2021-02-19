@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\RSA\Entities;
 
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\DB;
 
 class Secret extends Model
 {
@@ -14,10 +12,10 @@ class Secret extends Model
     {
         try {
             DB::table('secret')->insert(
-                array(
+                [
                     'username' => $input['username'],
-                    'publicKey' => $input['publicKey']
-                )
+                    'publicKey' => $input['publicKey'],
+                ]
             );
         } catch (QueryException $e) {
             return false;
@@ -30,8 +28,9 @@ class Secret extends Model
     {
         $result = DB::table('secret')->where('username', $input['username'])->first();
 
-        if (!$result)
+        if (!$result) {
             return false;
+        }
 
         return $result->id;
     }
@@ -42,17 +41,18 @@ class Secret extends Model
             ->where('username', $input['username'])
             ->first();
 
-        if (!$result)
+        if (!$result) {
             return false;
-
-        $plain1_temp = str_replace("\\n", '', $result->publicKey);
+        }
+        $plain1_temp = str_replace('\\n', '', $result->publicKey);
         $plain1 = str_replace("\n", '', $plain1_temp);
 
-        $plain2_temp = str_replace("\\n", '', $input['publicKey']);
+        $plain2_temp = str_replace('\\n', '', $input['publicKey']);
         $plain2 = str_replace("\n", '', $plain2_temp);
 
-        if ($plain1 != $plain2)
+        if ($plain1 != $plain2) {
             return false;
+        }
 
         return true;
     }
@@ -61,11 +61,11 @@ class Secret extends Model
     {
         try {
             DB::table('messages')->insert(
-                array(
+                [
                     'sec_id' => $input['sec_id'],
                     'secretName' => $input['secretName'],
-                    'encryptedSecret' => $input['encryptedSecret']
-                )
+                    'encryptedSecret' => $input['encryptedSecret'],
+                ]
             );
         } catch (QueryException $e) {
             return false;
@@ -83,8 +83,9 @@ class Secret extends Model
             ->select('messages.encryptedSecret', 'secret.publicKey')
             ->first();
 
-        if (!$result)
-            return FALSE;
+        if (!$result) {
+            return false;
+        }
 
         return $result;
     }

@@ -104,8 +104,6 @@ class Result
     }
 
     /**
-     * @param \Exception $e
-     * @param bool $rr
      * @return $this|\Exception
      */
     public function exception(\Exception $e, bool $rr)

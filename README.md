@@ -59,23 +59,22 @@
 暂时没空，过两天再写
 
 
-## changelog
+## todo
 
-### v0.3
-
-1. 优化文件上传功能😀
-2. api模块接口的RSA加密-后置中间件😀
-3. docker-compose部署
-4. 手动部署也可以直接使用命令初始化项目，优化使用体验
-5. 优化防止重放攻击的中间件😀
-6. 删掉没用的代码，从框架加载角度，优化一下laravel
-7. 把middleware、config、Exception都按照模块拆开
-   1. 把中间件加载的kernel.php也挪到各模块里
-8. 压缩图片😀
-9. 链路追踪: 使用zipkin作为laravel的链路追踪方案
+1. docker-compose部署
+2. 手动部署也可以直接使用命令初始化项目，优化使用体验
+3. 把middleware、config、Exception都按照模块拆开
+    1. 把中间件加载的kernel.php也挪到各模块里
+4. 链路追踪: 使用zipkin作为laravel的链路追踪方案
+5. 删掉没用的代码，从框架加载角度，优化一下laravel
 
 
+### v0.4
 
+1. 定时自动逆向migrate表结构到本地
+    1. 将指定表(比如配置表)数据写到本地seeder。便于迁移项目，也防止数据库丢失。
+    2. 将指定时间前的migrations文件自动清除。
+2. 添加现有接口的测试用例。
 
 
 

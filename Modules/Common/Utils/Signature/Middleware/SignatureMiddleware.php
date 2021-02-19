@@ -3,18 +3,17 @@
 namespace Modules\Common\Utils\Signature\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Modules\Common\Utils\Signature\Exception\InvalidSignatureException;
-use \Illuminate\Http\Request;
 
 class SignatureMiddleware
 {
+    const TIME_OUT = 1800;
     /**
      * The Laravel Application.
      */
     protected $nonceKey = 'api:nonce:';
-
-    const TIME_OUT = 1800;
 
     protected $signKeys = [
         'app_id',
@@ -28,10 +27,10 @@ class SignatureMiddleware
      * Handle an incoming request.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
+     *
+     * @throws InvalidSignatureException
      *
      * @return mixed
-     * @throws InvalidSignatureException
      */
     public function handle($request, Closure $next)
     {
@@ -40,11 +39,6 @@ class SignatureMiddleware
         return $next($request);
     }
 
-    /**
-     * @param array $params
-     * @param string $secret
-     * @return string
-     */
     public function sign(array $params, string $secret): string
     {
         $params = array_filter($params, function ($value, $key) {
@@ -61,7 +55,6 @@ class SignatureMiddleware
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return bool
      * @throws InvalidSignatureException
      */
     public function validSign(Request $request = null): bool
@@ -78,7 +71,7 @@ class SignatureMiddleware
 
         $signParams = \array_merge($signParams, [
             'http_method' => $request->method(),
-            'http_path'   => $request->getPathInfo(),
+            'http_path' => $request->getPathInfo(),
         ]);
 
         $this->validTimestamp($timestamp)
@@ -91,15 +84,13 @@ class SignatureMiddleware
     }
 
     /**
-     * @param array $params
-     * @param string $secret
-     * @param string $sign
-     * @return $this
      * @throws InvalidSignatureException
+     *
+     * @return $this
      */
     private function validHashMac(array $params, string $secret, string $sign)
     {
-        if (! hash_equals($this->sign($params, $secret), $sign)) {
+        if (!hash_equals($this->sign($params, $secret), $sign)) {
             throw new InvalidSignatureException('Invalid Signature');
         }
 
@@ -107,9 +98,9 @@ class SignatureMiddleware
     }
 
     /**
-     * @param int $time
-     * @return $this
      * @throws InvalidSignatureException
+     *
+     * @return $this
      */
     private function validTimestamp(int $time)
     {
@@ -123,9 +114,9 @@ class SignatureMiddleware
     }
 
     /**
-     * @param string $nonce
-     * @return $this
      * @throws InvalidSignatureException
+     *
+     * @return $this
      */
     private function validNonce(string $nonce)
     {
@@ -136,22 +127,14 @@ class SignatureMiddleware
         return $this;
     }
 
-    /**
-     * @param string $nonce
-     * @return bool
-     */
     private function setNonceCache(string $nonce): bool
     {
         // todo unittest里Cache无法set值，但是会返回true
         return Cache::add($this->getNonceCacheKey($nonce), 1, self::TIME_OUT / 60);
     }
 
-    /**
-     * @param string $nonce
-     * @return string
-     */
     private function getNonceCacheKey(string $nonce): string
     {
-        return $this->nonceKey.$nonce;
+        return $this->nonceKey . $nonce;
     }
 }

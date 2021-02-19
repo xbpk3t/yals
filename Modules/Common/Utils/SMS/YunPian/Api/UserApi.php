@@ -29,8 +29,10 @@ class UserApi extends YunpianApi
     }
 
     /**
-     * 查账户信息
+     * 查账户信息.
+     *
      * @param array $param
+     *
      * @return Result|null
      */
     public function get($param = [])
@@ -56,8 +58,8 @@ class UserApi extends YunpianApi
     }
 
     /**
-     * 修改账户信息
-     * @param array $param
+     * 修改账户信息.
+     *
      * @return Result|null
      */
     public function set(array $param = [])

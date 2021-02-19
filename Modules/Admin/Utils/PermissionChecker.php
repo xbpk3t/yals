@@ -10,10 +10,10 @@ class PermissionChecker
 {
     /**
      * 允许特定权限通过.
+     *
      * @param array|string|mixed $permission
-     * @return bool
      */
-    public static function check($permission):bool
+    public static function check($permission): bool
     {
         if (Admin::isAdministrator()) {
             return true;
@@ -34,10 +34,10 @@ class PermissionChecker
 
     /**
      * 允许 $roles 中的任意一个角色访问.
+     *
      * @param $roles
-     * @return bool
      */
-    public static function allow($roles):bool
+    public static function allow($roles): bool
     {
         if (Admin::isAdministrator()) {
             return true;
@@ -62,10 +62,10 @@ class PermissionChecker
 
     /**
      * 拒绝 roles 中的任意一个角色访问.
+     *
      * @param $roles
-     * @return bool
      */
-    public static function deny($roles):bool
+    public static function deny($roles): bool
     {
         if (Admin::isAdministrator()) {
             return true;

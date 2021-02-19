@@ -3,7 +3,6 @@
 namespace Modules\Admin\Requests;
 
 use Illuminate\Support\Arr;
-use Modules\Admin\Entities\AdminUser;
 use Illuminate\Support\Facades\Storage;
 
 class AdminUserRequest extends FormRequest

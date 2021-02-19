@@ -1,12 +1,14 @@
 <?php
 
-
 namespace Modules\Common\Utils\Signature\Tests;
 
-use Illuminate\Support\Str;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 // api.signature中间件的单元测试
+/**
+ * @coversNothing
+ */
 class SignatureTest extends TestCase
 {
     protected $nonceKey = 'api:nonce:';
@@ -47,21 +49,15 @@ class SignatureTest extends TestCase
         $secret = config('api-custom.signature.secret');
 
         $signParams = [
-            "nonce" => $nonce,
-            "timestamp" => $timestamp,
-            "http_method" => "GET",
-            "http_path" => "/api/sign"
+            'nonce' => $nonce,
+            'timestamp' => $timestamp,
+            'http_method' => 'GET',
+            'http_path' => '/api/sign',
         ];
 
         $sign = $this->sign($signParams, $secret);
 
         return ['nonce' => $nonce, 'timestamp' => $timestamp, 'sign' => $sign];
-    }
-
-    // 客户端生成nonce
-    protected function createNonce()
-    {
-        return Str::orderedUuid()->toString();
     }
 
     // 客户端生成sign
@@ -74,5 +70,11 @@ class SignatureTest extends TestCase
         ksort($params);
 
         return hash_hmac('sha256', http_build_query($params, null, '&'), $secret);
+    }
+
+    // 客户端生成nonce
+    protected function createNonce()
+    {
+        return Str::orderedUuid()->toString();
     }
 }

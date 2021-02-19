@@ -87,8 +87,8 @@ class ApiTestCase extends TestCase
     /**
      * Setting request header.
      *
-     * @param array $user
      * @param array $addition
+     *
      * @return array|string[]
      */
     protected function headers(array $user = [], $addition = [])

@@ -31,7 +31,6 @@ class SmsApi extends YunpianApi
     /**
      * 单条发送
      *
-     * @param array $param
      * @return Result|null
      */
     public function singleSend(array $param)

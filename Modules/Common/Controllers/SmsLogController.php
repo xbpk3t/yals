@@ -7,10 +7,6 @@ use Modules\Common\Requests\SendSmsRequest;
 
 class SmsLogController extends BaseController
 {
-    /**
-     * @param SendSmsRequest $request
-     * @return object
-     */
     public function sendSms(SendSmsRequest $request): object
     {
         $res = SmsService::sms($request->mobile, smsCode());

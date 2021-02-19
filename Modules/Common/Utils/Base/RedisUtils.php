@@ -23,10 +23,6 @@ class RedisUtils
         $this->currentMonth = date('Y-m', time());
     }
 
-    /**
-     * @param string $key
-     * @return bool
-     */
     public function isKeyExist(string $key): bool
     {
         return $this->redis->exists($key);
@@ -36,7 +32,6 @@ class RedisUtils
      * todo matchKeys有问题.
      *
      * @param string ...$redisKeys
-     * @return bool
      */
     public function deleteRedisKeys(string ...$redisKeys): bool
     {
@@ -110,27 +105,30 @@ class RedisUtils
     /**
      * @param string $tableName
      * @param string $name
+     *
      * @return array
      */
-    function getHashData($tableName='table', $name='')
+    public function getHashData($tableName = 'table', $name = '')
     {
         $data = [];
         $res = [];
-        if(empty($name)){
+        if (empty($name)) {
             $data = $this->redis->hGetAll($tableName);
-        }else{
-            if(is_array($name))
+        } else {
+            if (is_array($name)) {
                 $data = $this->redis->hMget($tableName, $name);
-            else
+            } else {
                 $res = $this->redis->hGet($tableName, $name);
+            }
         }
-        if($data){
-            foreach ($data as $k => $v){
-                if($v){
+        if ($data) {
+            foreach ($data as $k => $v) {
+                if ($v) {
                     $res[$k] = jsonDecode($v);
                 }
             }
         }
+
         return $res;
     }
 

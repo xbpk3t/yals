@@ -19,8 +19,6 @@ class HashMap
     /**
      * 向HashMap中添加一个键值对.
      *
-     * @param string $key
-     * @param string $value
      * @return mixed|null
      */
     public function put(string $key, string $value)
@@ -39,7 +37,6 @@ class HashMap
     /**
      * 根据key获取对应的value.
      *
-     * @param string $key
      * @return mixed|null
      */
     public function get(string $key)
@@ -54,7 +51,6 @@ class HashMap
     /**
      * 删除指定key的键值对.
      *
-     * @param string $key
      * @return mixed
      */
     public function remove(string $key)
@@ -129,7 +125,6 @@ class HashMap
     /**
      * 判断HashMap中是否包含指定的值.
      *
-     * @param string $value
      * @return bool
      */
     public function containsValue(string $value)
@@ -146,8 +141,7 @@ class HashMap
 
     /**
      * 判断HashMap中是否包含指定的键key.
-     * 
-     * @param string $key
+     *
      * @return bool
      */
     public function containsKey(string $key)

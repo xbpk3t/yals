@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\AES;
 
-use Illuminate\Contracts\Encryption\Encrypter;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Contracts\Support\Jsonable;
+use Illuminate\Contracts\Encryption\Encrypter;
 
 class ResponseMacroServiceProvider extends ServiceProvider
 {
@@ -15,10 +14,16 @@ class ResponseMacroServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(){
+    public function boot()
+    {
         Response::macro('encrypt', function ($value) {
-            if (is_array($value)) $value = jsonEncode($value);
-            if ($value instanceof Jsonable) $value = $value->toJson();
+            if (is_array($value)) {
+                $value = jsonEncode($value);
+            }
+            if ($value instanceof Jsonable) {
+                $value = $value->toJson();
+            }
+
             return Response::make(app()->make(Encrypter::class)
                 ->encrypt((string) $value, false));
         });
@@ -29,7 +34,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register(){
-        //
+    public function register()
+    {
     }
 }

@@ -1,13 +1,12 @@
 <?php
 
-
 namespace Modules\Common\Utils\ApiEncrypt\AES;
 
 use Closure;
-use Illuminate\Contracts\Encryption\DecryptException;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class AesDecryptMiddleware
 {
@@ -16,20 +15,21 @@ class AesDecryptMiddleware
      */
     protected $encrypt;
 
-    public function __construct(Encrypter $encrypt){
+    public function __construct(Encrypter $encrypt)
+    {
         $this->encrypt = $encrypt;
     }
 
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next){
-
-        if ($request->getContent() == null || $request->getContent() == '') {
+    public function handle($request, Closure $next)
+    {
+        if (null == $request->getContent() || '' == $request->getContent()) {
             return $next($request);
         }
 
@@ -43,23 +43,23 @@ class AesDecryptMiddleware
     }
 
     /**
-     * decrypt the content
-     * @param string $content
+     * decrypt the content.
+     *
      * @return string
      */
-    protected function decrypt(string $content){
+    protected function decrypt(string $content)
+    {
         return $this->encrypt->decrypt($content, false);
     }
 
     /**
-     * put the decrypt data into request
-     * @param Request $request
-     * @param string $content
+     * put the decrypt data into request.
+     *
      * @return Request
      */
-    protected function putIn(Request $request, string $content){
-
-        if ($request->getContentType() === 'json') {
+    protected function putIn(Request $request, string $content)
+    {
+        if ('json' === $request->getContentType()) {
             $request->setJson(new ParameterBag((array) jsonDecode($content)));
         } else {
             $request->attributes = new ParameterBag([$request->getContentType() => $content]);

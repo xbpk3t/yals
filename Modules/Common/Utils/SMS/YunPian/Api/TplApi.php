@@ -30,7 +30,7 @@ class TplApi extends YunpianApi
 
     /**
      * 取默认模板
-     * @param array $param
+     *
      * @return Result|null
      */
     public function get_default(array $param)
@@ -55,7 +55,7 @@ class TplApi extends YunpianApi
 
     /**
      * 取模板
-     * @param array $param
+     *
      * @return Result|null
      */
     public function get(array $param)
@@ -82,7 +82,7 @@ class TplApi extends YunpianApi
 
     /**
      * 添加模板
-     * @param array $param
+     *
      * @return Result|null
      */
     public function add(array $param)
@@ -110,7 +110,6 @@ class TplApi extends YunpianApi
     /**
      * 删除模板
      *
-     * @param array $param
      * @return Result|null
      */
     public function del(array $param)
@@ -136,7 +135,6 @@ class TplApi extends YunpianApi
     /**
      * 修改模板
      *
-     * @param array $param
      * @return Result|null
      */
     public function update(array $param)

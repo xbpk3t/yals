@@ -129,9 +129,6 @@ class SensitiveFilter implements Filter
     /**
      * 替换敏感字字符.
      *
-     * @param string $content
-     * @param string $replaceChar
-     * @param int $matchType
      * @return string|string[]
      */
     public function replace(string $content, string $replaceChar = '', int $matchType = 1)
@@ -153,7 +150,7 @@ class SensitiveFilter implements Filter
 
     /**
      * 被检测内容是否合法.
-     * @param string $content
+     *
      * @return bool
      */
     public function isLegal(string $content)
@@ -192,7 +189,6 @@ class SensitiveFilter implements Filter
     }
 
     /**
-     * @param string $filePath
      * @return \Generator
      */
     protected function yieldToReadFile(string $filePath)

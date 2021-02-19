@@ -14,7 +14,7 @@ $middleware1 = ['middleware' => [
 ]];
 $middleware2 = ['middleware' => [
     'api.throttle',
-    'jwt.auth'
+    'jwt.auth',
 ]];
 
 $api->group(array_merge($params, $middleware1), function ($api) {
