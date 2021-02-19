@@ -2,16 +2,16 @@
 
 namespace Modules\Common\Logging;
 
+use Monolog\Logger;
+
 class CustomizeFormatter
 {
     /**
-     * 自定义给定的日志实例。
+     * 自定义给定的日志实例
      *
-     * @param \Illuminate\Log\Logger $logger
-     *
-     * @return void
+     * @param Logger $logger
      */
-    public function __invoke($logger)
+    public function __invoke(Logger $logger)
     {
         foreach ($logger->getHandlers() as $handler) {
             $handler->setFormatter(new CustomizeJsonFormatter());

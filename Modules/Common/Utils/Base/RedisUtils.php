@@ -24,7 +24,8 @@ class RedisUtils
     }
 
     /**
-     * @return int
+     * @param string $key
+     * @return bool
      */
     public function isKeyExist(string $key): bool
     {
@@ -35,8 +36,7 @@ class RedisUtils
      * todo matchKeys有问题.
      *
      * @param string ...$redisKeys
-     *
-     * @return string
+     * @return bool
      */
     public function deleteRedisKeys(string ...$redisKeys): bool
     {
@@ -44,7 +44,7 @@ class RedisUtils
             $list = $this->matchKeys($redisKeys);
 
             if (0 === count($list)) {
-                return 'empty';
+                return true;
             }
 
             $this->redis->del($list);
@@ -83,9 +83,6 @@ class RedisUtils
      */
     public function getPageList($page = 1, $pageSize = 20, $field = [], $sort = 'asc')
     {
-        if (!is_numeric($page) || !is_numeric($pageSize)) {
-            return [];
-        }
         $pageSize = ($pageSize < 1 || $pageSize > 100) ? 20 : $pageSize;
         $limitStart = ($page - 1) * $pageSize;       //查询开始索引
         $limitEnd = $limitStart + $pageSize - 1;   //查询结束索引
@@ -108,6 +105,33 @@ class RedisUtils
         ];
 
         return $data;
+    }
+
+    /**
+     * @param string $tableName
+     * @param string $name
+     * @return array
+     */
+    function getHashData($tableName='table', $name='')
+    {
+        $data = [];
+        $res = [];
+        if(empty($name)){
+            $data = $this->redis->hGetAll($tableName);
+        }else{
+            if(is_array($name))
+                $data = $this->redis->hMget($tableName, $name);
+            else
+                $res = $this->redis->hGet($tableName, $name);
+        }
+        if($data){
+            foreach ($data as $k => $v){
+                if($v){
+                    $res[$k] = jsonDecode($v);
+                }
+            }
+        }
+        return $res;
     }
 
     /**

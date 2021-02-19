@@ -4,7 +4,7 @@ namespace Modules\Common\Utils\SensitiveWord;
 
 interface Filter
 {
-    public function getBadWords($content, $matchType = 1, $count = 0);
+    public function getBadWords(string $content, int $matchType = 1, int $count = 0);
 
-    public function isLegal($content);
+    public function isLegal(string $content);
 }

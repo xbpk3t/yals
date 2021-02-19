@@ -12,6 +12,7 @@ use Modules\Admin\Entities\AdminPermission;
 abstract class PermissionMiddleware
 {
     use UrlWhitelist;
+
     /**
      * @var string
      */

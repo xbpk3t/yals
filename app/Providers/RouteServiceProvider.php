@@ -19,9 +19,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
-    protected $commonNamespace = 'Modules\Common\Http\Controllers';
-    protected $apiNamespace = 'Modules\Api\Http\Controllers';
-    protected $adminNamespace = 'Modules\Admin\Http\Controllers';
+    protected $commonNamespace = 'Modules\Common\Controllers';
+    protected $apiNamespace = 'Modules\Api\Controllers';
+    protected $adminNamespace = 'Modules\Admin\Controllers';
 
     /**
      * The controller namespace for the application.
@@ -30,7 +30,6 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.

@@ -16,6 +16,9 @@ class AdminUserProfileRequest extends AdminUserRequest
         return $rules;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Auth\Authenticatable|\Modules\Admin\Entities\AdminUser
+     */
     public function userResource()
     {
         return Admin::user();

@@ -6,6 +6,7 @@ use Dingo\Api\Exception\ResourceException;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Request;
 
 class ApiRequest extends FormRequest
 {
@@ -20,14 +21,16 @@ class ApiRequest extends FormRequest
     }
 
     /**
-     * @throws ValidationException
+     * @param Validator $validator
      */
     protected function failedValidation(Validator $validator): void
     {
-        if ($this->container['request'] instanceof \Illuminate\Http\Request) {
+        if ($this->container['request'] instanceof Request) {
             throw new ResourceException($validator->errors()->first(), null);
         }
 
-        throw (new ValidationException($validator))->errorBag($this->errorBag)->redirectTo($this->getRedirectUrl());
+//        throw (new ValidationException($validator))
+//            ->errorBag($this->errorBag)
+//            ->redirectTo($this->getRedirectUrl());
     }
 }

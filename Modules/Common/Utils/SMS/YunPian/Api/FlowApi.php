@@ -19,7 +19,8 @@ class FlowApi extends YunpianApi
     public function init(YunpianClient $clnt)
     {
         parent::init($clnt);
-        $this->host($clnt->conf(self::YP_FLOW_HOST, 'https://flow.yunpian.com'));
+//        $this->host($clnt->conf(self::YP_FLOW_HOST, 'https://flow.yunpian.com'));
+        $this->host($clnt->conf(self::YP_FLOW_HOST));
     }
 
     public function name()
@@ -28,20 +29,9 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * <h1>查询流量包</h1>.
-     *
-     * <p>
-     * 参数名 类型 是否必须 描述 示例
-     * </p>
-     * <p>
-     * apikey String 是 用户唯一标识 9b11127a9701975c734b8aee81ee3526
-     * </p>
-     * <p>
-     * carrier String 否 运营商ID 传入该参数则获取指定运营商的流量包， 否则获取所有运营商的流量包 移动：10086 联通：10010
-     * 电信：10000
-     * </p>
-     *
-     * @return Result
+     * 查询流量包
+     * @param array $param
+     * @return Result|null
      */
     public function get_package(array $param = [])
     {
@@ -66,31 +56,9 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * <h1>充值流量</h1>.
-     *
-     * <p>
-     * 参数名 类型 是否必须 描述 示例
-     * </p>
-     * <p>
-     * apikey String 是 用户唯一标识 9b11127a9701975c734b8aee81ee3526
-     * </p>
-     * <p>
-     * mobile String 是 接收的手机号（仅支持大陆号码） 15205201314
-     * </p>
-     * <p>
-     * sn String 是 流量包的唯一ID 点击查看 1008601
-     * </p>
-     * <p>
-     * callback_url String 否 本条流量充值的状态报告推送地址 http://your_receive_url_address
-     * </p>
-     * <p>
-     * encrypt String 否 加密方式 使用加密 tea (不再使用)
-     * </p>
-     * <p>
-     * _sign String 否 签名字段 参考使用加密 393d079e0a00912335adfe46f4a2e10f (不再使用)
-     * </p>
-     *
-     * @return Result
+     * 充值流量
+     * @param array $param
+     * @return Result|null
      */
     public function recharge(array $param = [])
     {
@@ -115,19 +83,9 @@ class FlowApi extends YunpianApi
     }
 
     /**
-     * <h1>获取状态报告</h1>.
-     *
-     * <p>
-     * 参数名 是否必须 描述 示例
-     * </p>
-     * <p>
-     * apikey 是 用户唯一标识 9b11127a9701975c734b8aee81ee3526
-     * </p>
-     * <p>
-     * page_size 否 每页个数，最大100个，默认20个 20
-     * </p>
-     *
-     * @return Result
+     * 获取状态报告
+     * @param array $param
+     * @return Result|null
      */
     public function pull_status(array $param = [])
     {

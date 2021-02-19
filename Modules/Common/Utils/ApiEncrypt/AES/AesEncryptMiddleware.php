@@ -21,6 +21,8 @@ class AesEncryptMiddleware
             return $response;
         }
 
+        $value = '';
+
         if ($response instanceof DingoResponse) {
             $value = $response->getContent();
         }
@@ -28,8 +30,6 @@ class AesEncryptMiddleware
         if ($response instanceof Response) {
             $value = $response->getContent();
         }
-        return response(encrypt((string) $value, false));
-//        return response(app()->make(Encrypter::class)
-//            ->encrypt((string) $value, false));
+        return response(encrypt($value, false));
     }
 }

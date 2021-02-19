@@ -20,7 +20,7 @@ class LogOperation
         if ($this->shouldLogOperation($request)) {
             $ips = request()->getClientIps();
 
-            $setProxy = $request->setTrustedProxies($ips, \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR);
+            $request->setTrustedProxies($ips, Request::HEADER_X_FORWARDED_FOR);
             $log = [
                 'user_id' => Admin::user()->id,
                 'path' => mb_substr($request->path(), 0, 255),

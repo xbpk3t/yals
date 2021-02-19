@@ -19,12 +19,11 @@ class HashMap
     /**
      * 向HashMap中添加一个键值对.
      *
-     * @param $key
-     * @param $value
-     *
+     * @param string $key
+     * @param string $value
      * @return mixed|null
      */
-    public function put($key, $value)
+    public function put(string $key, string $value)
     {
         if (!array_key_exists($key, $this->hashTable)) {
             $this->hashTable[$key] = $value;
@@ -40,11 +39,10 @@ class HashMap
     /**
      * 根据key获取对应的value.
      *
-     * @param $key
-     *
+     * @param string $key
      * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key)
     {
         if (array_key_exists($key, $this->hashTable)) {
             return $this->hashTable[$key];
@@ -56,11 +54,10 @@ class HashMap
     /**
      * 删除指定key的键值对.
      *
-     * @param $key
-     *
-     * @return mixed|null
+     * @param string $key
+     * @return mixed
      */
-    public function remove($key)
+    public function remove(string $key)
     {
         $temp_table = [];
         if (array_key_exists($key, $this->hashTable)) {
@@ -132,11 +129,10 @@ class HashMap
     /**
      * 判断HashMap中是否包含指定的值.
      *
-     * @param $value
-     *
+     * @param string $value
      * @return bool
      */
-    public function containsValue($value)
+    public function containsValue(string $value)
     {
         while ($curValue = current($this->hashTable)) {
             if ($curValue == $value) {
@@ -150,12 +146,11 @@ class HashMap
 
     /**
      * 判断HashMap中是否包含指定的键key.
-     *
-     * @param $key
-     *
+     * 
+     * @param string $key
      * @return bool
      */
-    public function containsKey($key)
+    public function containsKey(string $key)
     {
         return array_key_exists($key, $this->hashTable);
     }

@@ -38,7 +38,7 @@ class Admin
         $prefix = 'admin-api';
         $path = trim($path, '/');
 
-        if (null === $path || 0 == mb_strlen($path)) {
+        if (null == $path || 0 == mb_strlen($path)) {
             $path = $prefix;
         } else {
             $path = $prefix . '/' . $path;

@@ -104,14 +104,13 @@ class Result
     }
 
     /**
-     * @param string $e
-     * @param bool   $rr
-     *
-     * @return Exception|\Modules\Common\Utils\SMS\YunPian\Model\Result
+     * @param \Exception $e
+     * @param bool $rr
+     * @return $this|\Exception
      */
-    public function exception($e = null, $rr = false)
+    public function exception(\Exception $e, bool $rr)
     {
-        if (isset($e) || $rr) {
+        if ($rr) {
             $this->e = $e;
 
             return $this;

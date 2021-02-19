@@ -28,7 +28,7 @@ class SensitiveFilter implements Filter
     }
 
     /**
-     * 构建铭感词树【文件模式】.
+     * 构建敏感词树【文件模式】.
      *
      * @param string $filePath
      *
@@ -49,7 +49,7 @@ class SensitiveFilter implements Filter
     }
 
     /**
-     * 构建铭感词树【数组模式】.
+     * 构建敏感词树【数组模式】.
      *
      * @param null $sensitiveWords
      *
@@ -129,13 +129,12 @@ class SensitiveFilter implements Filter
     /**
      * 替换敏感字字符.
      *
-     * @param        $content
+     * @param string $content
      * @param string $replaceChar
-     * @param int    $matchType
-     *
-     * @return mixed
+     * @param int $matchType
+     * @return string|string[]
      */
-    public function replace($content, $replaceChar = '', $matchType = 1)
+    public function replace(string $content, string $replaceChar = '', int $matchType = 1)
     {
         if (empty($content)) {
             \abort(404, '检测内容为空');
@@ -154,12 +153,10 @@ class SensitiveFilter implements Filter
 
     /**
      * 被检测内容是否合法.
-     *
-     * @param $content
-     *
+     * @param string $content
      * @return bool
      */
-    public function isLegal($content)
+    public function isLegal(string $content)
     {
         $this->contentLength = mb_strlen($content, 'utf-8');
         for ($length = 0; $length < $this->contentLength; ++$length) {
@@ -195,11 +192,10 @@ class SensitiveFilter implements Filter
     }
 
     /**
-     * @param $filePath
-     *
+     * @param string $filePath
      * @return \Generator
      */
-    protected function yieldToReadFile($filePath)
+    protected function yieldToReadFile(string $filePath)
     {
         $fp = fopen($filePath, 'r');
         while (!feof($fp)) {

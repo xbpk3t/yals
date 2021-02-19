@@ -14,10 +14,10 @@ class AesDecryptMiddleware
     /**
      * @var Encrypter
      */
-    protected $encrypter;
+    protected $encrypt;
 
-    public function __construct(Encrypter $encrypter){
-        $this->encrypter = $encrypter;
+    public function __construct(Encrypter $encrypt){
+        $this->encrypt = $encrypt;
     }
 
     /**
@@ -36,7 +36,7 @@ class AesDecryptMiddleware
         try {
             $content = $this->decrypt($request->getContent());
         } catch (DecryptException $exception) {
-            return abort(403);
+            abort(403);
         }
 
         return $next($this->putIn($request, $content));
@@ -48,7 +48,7 @@ class AesDecryptMiddleware
      * @return string
      */
     protected function decrypt(string $content){
-        return $this->encrypter->decrypt($content, false);
+        return $this->encrypt->decrypt($content, false);
     }
 
     /**

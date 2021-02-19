@@ -37,6 +37,7 @@ class AdminUserRequest extends FormRequest
             'permissions' => 'array',
             'permissions.*' => 'exists:admin_permissions,id',
         ];
+
         if ($this->isMethod('put')) {
             $rules = Arr::only($rules, $this->keys());
             // 如果更新时, 没填密码, 则不用验证
@@ -53,7 +54,7 @@ class AdminUserRequest extends FormRequest
     }
 
     /**
-     * @return AdminUser
+     * @return \Illuminate\Routing\Route|object|string|null
      */
     public function userResource()
     {

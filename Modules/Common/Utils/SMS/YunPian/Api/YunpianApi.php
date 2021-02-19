@@ -45,17 +45,16 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     private $charset;
 
     /**
-     * @param YunpianClient $client
+     * @param YunpianClient $clnt
      */
     public function init(YunpianClient $clnt)
     {
-        if (null === $clnt) {
-            return;
-        }
         $this->clnt = $clnt;
         $this->apikey = $clnt->apikey();
-        $this->version = $clnt->conf(self::YP_VERSION, self::VERSION_V2);
-        $this->charset = $clnt->conf(self::HTTP_CHARSET, self::HTTP_CHARSET_DEFAULT);
+//        $this->version = $clnt->conf(self::YP_VERSION, self::VERSION_V2);
+//        $this->charset = $clnt->conf(self::HTTP_CHARSET, self::HTTP_CHARSET_DEFAULT);
+        $this->version = $clnt->conf(self::YP_VERSION);
+        $this->charset = $clnt->conf(self::HTTP_CHARSET);
     }
 
     /**
@@ -64,9 +63,8 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
     abstract public function name();
 
     /**
-     * @param YunpianClient $client
-     *
-     * @return \Modules\Common\Utils\SMS\YunPian\YunpianClient|\Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi
+     * @param YunpianClient|null $clnt
+     * @return $this|YunpianClient
      */
     public function client(YunpianClient $clnt = null)
     {
@@ -80,44 +78,36 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
 
     /**
      * @param string $host
-     *
-     * @return string|\Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi
+     * @return $this|string
      */
-    public function host($host = null)
+    public function host(string $host)
     {
-        if (null === $host) {
-            return $this->host;
-        }
         $this->host = $host;
 
         return $this;
     }
 
     /**
-     * @param string $version
-     *
-     * @return \Modules\Common\Utils\SMS\YunPian\YunpianConf|\Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi
+     * @return string
      */
-    public function version($version = null)
+    public function version()
     {
-        if (null === $version) {
-            return $this->version;
-        }
-        $this->version = $version;
+//        if (null === $version) {
+//            return $this->version;
+//        }
+//        $this->version = $version;
+//
+//        return $this;
 
-        return $this;
+        return $this->version;
     }
 
     /**
      * @param string $path
-     *
-     * @return \Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi | string
+     * @return $this|string
      */
-    public function path($path = null)
+    public function path(string $path)
     {
-        if (null === $path) {
-            return $this->path;
-        }
         $this->path = $path;
 
         return $this;
@@ -125,32 +115,21 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
 
     /**
      * @param string $apikey
-     *
-     * @return string|\Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi
+     * @return $this|string
      */
-    public function apikey($apikey = null)
+    public function apikey(string $apikey)
     {
-        if (null === $apikey) {
-            return $this->apikey;
-        }
         $this->apikey = $apikey;
 
         return $this;
     }
 
     /**
-     * @param string $charset
-     *
-     * @return string|\Modules\Common\Utils\SMS\YunPian\Api\YuanpianApi
+     * @return string
      */
-    public function charset($charset = null)
+    public function charset()
     {
-        if (null === $charset) {
-            return $this->charset;
-        }
-        $this->charset = charset;
-
-        return $this;
+        return $this->charset;
     }
 
     /**
@@ -174,15 +153,12 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
 
             return $this->result($rsp, $h, $r);
         } catch (\Exception $e) {
-            return $h->catchExceptoin($e, $r);
+            return $h->catchException($e, $r);
         }
     }
 
     public function result(array $rsp, ResultHandler $h = null, Result $r = null)
     {
-        // if (is_null($h)) { TODO
-        // $h = // default handler
-        // }
         if (null === $r) {
             $r = new Result();
         }
@@ -192,48 +168,37 @@ abstract class YunpianApi implements YunpianApiResult, YunpianConstant
         return Code::OK == $code ? $h->succ($code, $rsp, $r) : $h->fail($code, $rsp, $r);
     }
 
-    public function code(array &$rsp, $version = YunpianConstant::VERSION_V2)
+    public function code(array &$rsp, $version = YunpianConstant::VERSION_V2):int
     {
-        if (null === $rsp) {
-            return Code::OK;
-        }
         $code = Code::UNKNOWN_EXCEPTION;
-        if (null === $version) {
-            $version = self::VERSION_V2;
-        }
-        if (isset($rsp)) {
-            switch ($version) {
-                case self::VERSION_V1:
-                    $code = array_key_exists(self::CODE, $rsp) ? (int) $rsp[self::CODE] : Code::UNKNOWN_EXCEPTION;
-                    break;
-                case self::VERSION_V2:
-                    $code = array_key_exists(self::CODE, $rsp) ? (int) $rsp[self::CODE] : Code::OK;
-                    break;
-            }
+
+        switch ($version) {
+            case self::VERSION_V1:
+                $code = array_key_exists(self::CODE, $rsp) ? (int) $rsp[self::CODE] : Code::UNKNOWN_EXCEPTION;
+                break;
+            case self::VERSION_V2:
+                $code = array_key_exists(self::CODE, $rsp) ? (int) $rsp[self::CODE] : Code::OK;
+                break;
         }
 
         return $code;
     }
 
     /**
-     * @param Result $r
-     *
-     * @return Result
+     * @param array $param
+     * @param array $must
+     * @param Result|null $r
+     * @return Result|null
      */
     public function verifyParam(array &$param, array &$must, Result $r = null)
     {
-        if (null === $r) {
-            $r = new Result();
-        }
         if (!array_key_exists(self::APIKEY, $param)) {
             $param[self::APIKEY] = $this->apikey;
         }
-        if (isset($must)) {
-            foreach ($must as $p) {
-                if (!array_key_exists($p, $param)) {
-                    $r->code(Code::ARGUMENT_MISSING)->detail($p);
-                    break;
-                }
+        foreach ($must as $p) {
+            if (!array_key_exists($p, $param)) {
+                $r->code(Code::ARGUMENT_MISSING)->detail($p);
+                break;
             }
         }
 

@@ -41,14 +41,11 @@ class SignatureMiddleware
     }
 
     /**
-     * Get sinature.
-     *
      * @param array $params
-     * @param       $secret
-     *
+     * @param string $secret
      * @return string
      */
-    public function sign(array $params, string $secret)
+    public function sign(array $params, string $secret): string
     {
         $params = array_filter($params, function ($value, $key) {
             return in_array($key, $this->signKeys);
@@ -73,7 +70,7 @@ class SignatureMiddleware
             throw new InvalidSignatureException('缺少接口签名参数');
         }
 
-        $timestamp = $request->input('timestamp', 0);
+        $timestamp = (int) $request->input('timestamp', 0);
         $nonce = $request->input('nonce');
         $sign = $request->input('sign');
         $signParams = $request->input();
@@ -94,18 +91,15 @@ class SignatureMiddleware
     }
 
     /**
-     * Validate hmac.
-     *
-     * @param $params array
-     * @param $secret string
-     * @param $hmac   string
-     *
-     * @return SignatureMiddleware
+     * @param array $params
+     * @param string $secret
+     * @param string $sign
+     * @return $this
      * @throws InvalidSignatureException
      */
     private function validHashMac(array $params, string $secret, string $sign)
     {
-        if (\is_null($sign) || ! hash_equals($this->sign($params, $secret), $sign)) {
+        if (! hash_equals($this->sign($params, $secret), $sign)) {
             throw new InvalidSignatureException('Invalid Signature');
         }
 
@@ -113,16 +107,12 @@ class SignatureMiddleware
     }
 
     /**
-     * Validate timestamp.
-     *
-     * @param $time
-     *
+     * @param int $time
      * @return $this
      * @throws InvalidSignatureException
      */
-    private function validTimestamp($time)
+    private function validTimestamp(int $time)
     {
-        $time = \intval($time);
         $currentTime = time();
 
         if ($time <= 0 || $time > $currentTime || $currentTime - $time > self::TIME_OUT) {
@@ -133,16 +123,13 @@ class SignatureMiddleware
     }
 
     /**
-     * Validate nonce.
-     *
-     * @param $nonce
-     *
+     * @param string $nonce
      * @return $this
      * @throws InvalidSignatureException
      */
-    private function validNonce($nonce)
+    private function validNonce(string $nonce)
     {
-        if (\is_null($nonce) || Cache::has($this->getNonceCacheKey($nonce))) {
+        if (Cache::has($this->getNonceCacheKey($nonce))) {
             throw new InvalidSignatureException('Not nonce');
         }
 
@@ -150,21 +137,20 @@ class SignatureMiddleware
     }
 
     /**
-     * Create nonce cache.
-     *
-     * @param $nonce
+     * @param string $nonce
+     * @return bool
      */
-    private function setNonceCache($nonce): bool
+    private function setNonceCache(string $nonce): bool
     {
         // todo unittest里Cache无法set值，但是会返回true
         return Cache::add($this->getNonceCacheKey($nonce), 1, self::TIME_OUT / 60);
     }
 
     /**
-     * @param $nonce
+     * @param string $nonce
      * @return string
      */
-    private function getNonceCacheKey($nonce): string
+    private function getNonceCacheKey(string $nonce): string
     {
         return $this->nonceKey.$nonce;
     }
