@@ -160,6 +160,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         // Package Service Providers...
+        \App\Providers\EasySmsServiceProvider::class,
 
         // Application Service Providers...
         App\Providers\AppServiceProvider::class,

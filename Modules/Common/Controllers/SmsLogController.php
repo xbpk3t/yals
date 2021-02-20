@@ -2,14 +2,14 @@
 
 namespace Modules\Common\Controllers;
 
-use Modules\Common\Utils\SMS\SmsService;
+use Modules\Common\Utils\Base\SmsUtils;
 use Modules\Common\Requests\SendSmsRequest;
 
 class SmsLogController extends BaseController
 {
     public function sendSms(SendSmsRequest $request): object
     {
-        $res = SmsService::sms($request->mobile, smsCode());
+        $res = SmsUtils::sms($request->mobile, smsCode());
         if ($res) {
             return $this->okMsg('短信发送成功');
         }

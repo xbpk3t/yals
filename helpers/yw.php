@@ -111,7 +111,7 @@ function detectEncoding($str, $encoding = 'utf8'): string
 if (!function_exists('getDomain')) {
     function getDomain()
     {
-        $urlArr = parse_url(\Illuminate\Support\Facades\URL::current());
+        $urlArr = parse_url(url()->current());
 
         return $urlArr['scheme'] . '://' . $urlArr['host'];
     }

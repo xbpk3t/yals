@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Common\Tests\Feature;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 
@@ -26,10 +26,10 @@ class SmsLogTest extends TestCase
 //            'mobile' => '18616287252'
 //        ]);
 
-        $response = $this->call('post', $url, [
+        $response = $this->call('POST', $url, [
             'mobile' => '18616287252',
         ], [], [], [
-            'Accept' => 'application/prs.starter.v1.0+json',
+            'HTTP_Accept' => 'application/prs.starter.v1.0+json',
         ]);
 
         dd($response);

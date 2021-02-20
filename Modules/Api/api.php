@@ -6,27 +6,30 @@ $params = [
     'prefix' => 'api',
     'version' => 'v1.0',
     'namespace' => 'Modules\Api\Controllers',
-    'middleware' => ['api.throttle'],
+];
+
+$mwNotLogin = ['middleware' => [
+    'api.throttle',
+],
     'limit' => config('api.rate_limits.sign.limit'),
     'expires' => config('api.rate_limits.sign.expires'),
 ];
-$middleware1 = ['middleware' => [
-    'api.throttle',
-//    'api.signature'
-]];
-$middleware2 = ['middleware' => [
+
+$mwLogin = ['middleware' => [
     'api.throttle',
     'jwt.auth',
-]];
+],
+    'limit' => config('api.rate_limits.sign.limit'),
+    'expires' => config('api.rate_limits.sign.expires'),
+];
 
 // 不需要登录的接口
-$api->group(array_merge($params, $middleware1), function ($api) {
-    $api->get('/banner2', 'UserController@index');
+$api->group(array_merge($params, $mwNotLogin), function ($api) {
     $api->group(['prefix' => '/user'], function ($api) {
         $api->post('/login', 'UserController@login');
     });
 });
 
 // 需要登录的接口
-$api->group(array_merge($params, $middleware2), function ($api) {
+$api->group(array_merge($params, $mwLogin), function ($api) {
 });

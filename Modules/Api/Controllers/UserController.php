@@ -41,11 +41,6 @@ class UserController extends BaseController
             'token' => JWTAuth::fromUser($this->user),
         ];
 
-        return $this->respondSuccess($res);
-    }
-
-    public function refreshToken()
-    {
-        return $this->respondSuccess();
+        return $this->okList($res);
     }
 }

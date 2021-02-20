@@ -32,16 +32,16 @@ class ApiTestCase extends TestCase
      */
     protected function setUp(): void
     {
-        //每个test方法之前都会调用一次这个方法
+        // 每个test方法之前都会调用一次这个方法
         parent::setUp();
         $this->params = $this->readyApiParams();
-        //调用用户登录的操作
+        // 调用用户登录的操作
         $user = $this->userLogin($this->params['login']);
         $this->user = $user;
-        //获取用户 token
+        // 获取用户 token
         $this->authHeader = $this->headers($user);
 
-        //刷新应用。该操作由TestCase的setup()方法自动调用，不然会使用过期的token
+        // 刷新应用。该操作由TestCase的setup()方法自动调用，不然会使用过期的token
         $this->refreshApplication();
     }
 
@@ -95,7 +95,7 @@ class ApiTestCase extends TestCase
     {
         //添加版本号头部信息
         $headers = [
-            'Accept' => 'application/vnd.ideabuy.v1+json',
+            'Accept' => 'application/prs.starter.v1.0+json',
             'plat' => 'ios',
         ];
         //拼接 token

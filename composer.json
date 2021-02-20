@@ -18,6 +18,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "nwidart/laravel-modules": "^8.2",
+        "overtrue/easy-sms": "^1.3",
         "tymon/jwt-auth": "^1.0",
         "zgldh/qiniu-laravel-storage": "^0.10.3"
     },
