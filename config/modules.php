@@ -145,36 +145,41 @@ return [
         | Set the generate key to false to not generate that folder
         */
         'generator' => [
-            'config' => ['path' => 'Config', 'generate' => true],
-            'command' => ['path' => 'Console', 'generate' => true],
 
+            // MVC
             'model' => ['path' => 'Entities', 'generate' => true],
+            'controller' => ['path' => 'Controllers', 'generate' => true],
+            'request' => ['path' => 'Requests', 'generate' => true],
+            'repository' => ['path' => 'Repositories', 'generate' => true],
+            'resource' => ['path' => 'Transformers', 'generate' => true],
+            'routes' => ['path' => 'Routes', 'generate' => true],
 
-            'controller' => ['path' => 'Http/Controllers', 'generate' => true],
-            'filter' => ['path' => 'Http/Middleware', 'generate' => true],
-            'request' => ['path' => 'Http/Requests', 'generate' => true],
-            'provider' => ['path' => 'Providers', 'generate' => true],
-
+            // 单元测试
             'test' => ['path' => 'Tests/Unit', 'generate' => true],
             'test-feature' => ['path' => 'Tests/Feature', 'generate' => true],
-            'repository' => ['path' => 'Repositories', 'generate' => false],
-            'event' => ['path' => 'Events', 'generate' => false],
-            'listener' => ['path' => 'Listeners', 'generate' => false],
+
+            // 其他
+            'config' => ['path' => 'Config', 'generate' => true],
+            'command' => ['path' => 'Console', 'generate' => true],
+            'filter' => ['path' => 'Middleware', 'generate' => true],
+            'provider' => ['path' => 'Providers', 'generate' => true],
+
+            // 事件及异步任务
+            'event' => ['path' => 'Events', 'generate' => true],
+            'listener' => ['path' => 'Listeners', 'generate' => true],
+            'jobs' => ['path' => 'Jobs', 'generate' => true],
+
+
             'policies' => ['path' => 'Policies', 'generate' => false],
+            // 自定义验证规则
             'rules' => ['path' => 'Rules', 'generate' => false],
-            'jobs' => ['path' => 'Jobs', 'generate' => false],
 
-            'resource' => ['path' => 'Transformers', 'generate' => false],
-
-//            'routes' => ['path' => 'Routes', 'generate' => true],
 
 //            'emails' => ['path' => 'Emails', 'generate' => false],
 //            'notifications' => ['path' => 'Notifications', 'generate' => false],
-
 //            'migration' => ['path' => 'Database/Migrations', 'generate' => true],
 //            'seeder' => ['path' => 'Database/Seeders', 'generate' => true],
 //            'factory' => ['path' => 'Database/factories', 'generate' => true],
-
 //            'component-view' => ['path' => 'Resources/views/components', 'generate' => false],
 //            'component-class' => ['path' => 'View/Component', 'generate' => false],
 //            'assets' => ['path' => 'Resources/assets', 'generate' => true],

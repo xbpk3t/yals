@@ -1,6 +1,6 @@
 # laravel-starter
 
-把日常开发中的常用功能抽出来做一个starter，避免每次开新项目时耗费的大量重复工作，该repo会长期维护，欢迎大家star。在使用中如有bug或体验问题，请提issue。
+把日常开发中的常用功能抽出来做一个starter，避免每次开新项目时耗费时间去做大量重复工作，该repo会长期维护，欢迎大家star。在使用中如有bug或体验问题，请提issue。
 
 
 ## 基本功能
@@ -62,16 +62,15 @@
 
 ## 使用说明
 
+1. 使用`php artisan module:make Demo`生成指定模块名，更多命令请查看拓展包[nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)
 
 
 ## todo
 
 1. docker-compose部署
 2. 手动部署也可以直接使用命令初始化项目，优化使用体验
-3. 把middleware、config、Exception都按照模块拆开
-    1. 把中间件加载的kernel.php也挪到各模块里
-4. 链路追踪: 使用zipkin作为laravel的链路追踪方案
-5. 删掉没用的代码，从框架加载角度，优化一下laravel
+3. 链路追踪: 使用zipkin作为laravel的链路追踪方案
+4. 删掉没用的代码，从框架加载角度，优化一下laravel
 
 
 ### v0.4
@@ -80,9 +79,11 @@
     1. 将指定表(比如配置表)数据写到本地seeder。便于迁移项目，也防止数据库丢失
     2. 将指定时间前的migrations文件自动清除
 2. 添加现有接口的测试用例
-3. 修改`nwidart/laravel-modules`生成代码的目录结构，并添加自己需要的文件夹及文件，比如transformers以及tests文件夹
-4. 移除sms通用模块，用超哥的`easy-sms`代替自己写的sms包
-5. 去掉一些冗余的功能和模块，比如"优惠券模块"等
+3. 修改`nwidart/laravel-modules`生成代码的目录结构😀
+   1. 将Http文件夹下的`Controllers`、`Middleware`、`Requests`子文件夹拆出来
+   2. 并添加自己需要的文件夹及文件，比如`transformers`以及`tests`文件夹
+4. 移除sms通用模块，用超哥的`easy-sms`代替自己写的sms包😀
+5. 去掉一些冗余的功能和模块，比如"优惠券模块"等😀
 
 
 
