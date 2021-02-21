@@ -14,7 +14,6 @@ class QiNiu
 
     public function __construct()
     {
-        //
         $this->disk = QiniuStorage::disk('qiniu');
     }
 
@@ -41,14 +40,14 @@ class QiNiu
 
         $fileName = sprintf('%s.%s', $key[0], $ext);
         $contents = @file_get_contents($realPath);
-        $result = $this->disk->put("$category/".$fileName, $contents);
+        $result = $this->disk->put("$category/" . $fileName, $contents);
 
         if (!$result) {
             abort(400, '文件上传失败');
         }
         $md5 = md5_file($file->getRealPath());
 
-        $download = $this->disk->downloadUrl("$category/".$fileName);
+        $download = $this->disk->downloadUrl("$category/" . $fileName);
 
         return [
             'filename' => $fileName,
@@ -57,7 +56,7 @@ class QiNiu
             'mime_type' => $file->getMimeType(),
             'md5' => $md5,
             'url' => $download->getUrl(),
-            'category' => $category
+            'category' => $category,
         ];
     }
 

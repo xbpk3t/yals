@@ -2,16 +2,15 @@
 
 namespace Modules\Api\Controllers;
 
+use Exception;
 use Modules\Api\Entities\User;
-use Modules\Api\Requests\User\RegisterRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Modules\Api\Requests\User\LoginRequest;
+use Modules\Api\Requests\User\RegisterRequest;
 use Modules\Common\Controllers\BaseController;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use \Exception;
-
 
 class UserController extends BaseController
 {
@@ -24,16 +23,12 @@ class UserController extends BaseController
         $this->jwt = $jwt;
     }
 
-    /**
-     * @param RegisterRequest $request
-     * @return object
-     */
-    public function register(RegisterRequest $request):object
+    public function register(RegisterRequest $request): object
     {
         return $this->okMsg();
     }
 
-    public function login(LoginRequest $request):object
+    public function login(LoginRequest $request): object
     {
         try {
             //验证用户是否存在，

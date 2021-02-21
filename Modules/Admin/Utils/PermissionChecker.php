@@ -105,8 +105,6 @@ class PermissionChecker
                 $method = explode(',', $method);
             }
 
-            // todo 注意这里，前缀应该写成配置
-//            $path = 'admin-api' . $path;
             $path = 'admin' . $path;
 
             return compact('method', 'path');

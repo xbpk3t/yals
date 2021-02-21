@@ -11,12 +11,21 @@
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./Modules/Common/Tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./Modules/Admin/Tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./Modules/Api/Tests/Feature</directory>
+        </testsuite>
     </testsuites>
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
-    </coverage>
+<!--    <coverage processUncoveredFiles="true">-->
+<!--        <include>-->
+<!--            <directory suffix=".php">./app</directory>-->
+<!--        </include>-->
+<!--    </coverage>-->
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
@@ -25,7 +34,13 @@
         <!-- <server name="DB_DATABASE" value=":memory:"/> -->
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
-        <server name="SESSION_DRIVER" value="array"/>
+        <server name="SESSION_DRIVER" value="redis"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
+        <server name="CACHE_DRIVER" value="redis"/>
+        <server name="REDIS_CLIENT" value="phpredis"/>
+        <server name="REDIS_HOST" value="127.0.0.1"/>
+        <server name="REDIS_PASSWORD" value="123456"/>
+        <server name="REDIS_PORT" value="6379"/>
+<!--        <server name="MYSQL_DATABASE" value="${MYSQL_DATABASE}"/>-->
     </php>
 </phpunit>

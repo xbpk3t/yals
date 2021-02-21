@@ -169,11 +169,9 @@ return [
             'listener' => ['path' => 'Listeners', 'generate' => true],
             'jobs' => ['path' => 'Jobs', 'generate' => true],
 
-
             'policies' => ['path' => 'Policies', 'generate' => false],
             // 自定义验证规则
             'rules' => ['path' => 'Rules', 'generate' => false],
-
 
 //            'emails' => ['path' => 'Emails', 'generate' => false],
 //            'notifications' => ['path' => 'Notifications', 'generate' => false],

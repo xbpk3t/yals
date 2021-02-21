@@ -3,8 +3,7 @@
 namespace Modules\Admin\Entities;
 
 /**
- * Class AdminRole
- * @package Modules\Admin\Entities
+ * Class AdminRole.
  *
  * @property string $name
  * @property string $slug

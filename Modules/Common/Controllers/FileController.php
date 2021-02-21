@@ -2,11 +2,11 @@
 
 namespace Modules\Common\Controllers;
 
-use Modules\Common\Requests\File\BatchDelRequest;
-use Modules\Common\Requests\File\DelRequest;
-use Modules\Common\Utils\Base\QiNiu;
 use Modules\Common\Entities\File;
+use Modules\Common\Utils\Base\QiNiu;
+use Modules\Common\Requests\File\DelRequest;
 use Modules\Common\Requests\File\UploadRequest;
+use Modules\Common\Requests\File\BatchDelRequest;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class FileController extends BaseController
@@ -19,10 +19,7 @@ class FileController extends BaseController
     }
 
     /**
-     * 上传文件
-     *
-     * @param UploadRequest $request
-     * @return object
+     * 上传文件.
      */
     public function upload(UploadRequest $request): object
     {
@@ -46,10 +43,7 @@ class FileController extends BaseController
     }
 
     /**
-     * 批量删除文件
-     *
-     * @param BatchDelRequest $request
-     * @return object
+     * 批量删除文件.
      */
     public function batchDel(BatchDelRequest $request): object
     {

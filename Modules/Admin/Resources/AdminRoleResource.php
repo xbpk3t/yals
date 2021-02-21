@@ -5,14 +5,12 @@ namespace Modules\Admin\Resources;
 use Modules\Admin\Entities\AdminRole;
 
 /**
- * Class AdminRoleResource
- * @package Modules\Admin\Resources
+ * Class AdminRoleResource.
  *
  * @property string $name
  * @property string $slug
  * @property string $created_at
  * @property string $updated_at
- *
  */
 class AdminRoleResource extends JsonResource
 {

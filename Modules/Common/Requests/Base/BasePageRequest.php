@@ -25,7 +25,7 @@ class BasePageRequest extends FormRequest
     {
         return [
             'page' => ['required', 'int'],
-            'size' => ['required', 'int']
+            'size' => ['required', 'int'],
         ];
     }
 }

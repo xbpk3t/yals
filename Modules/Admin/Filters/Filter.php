@@ -94,9 +94,9 @@ abstract class Filter
     /**
      * 过滤简单过滤器.
      *
-     * @param string       $filter 过滤字段
-     * @param array $op     操作
-     * @param mixed        $value  请求中对应的值
+     * @param string $filter 过滤字段
+     * @param array  $op     操作
+     * @param mixed  $value  请求中对应的值
      */
     protected function applySimpleFilter($filter, array $op, $value)
     {

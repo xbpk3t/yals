@@ -129,7 +129,6 @@ class SignatureMiddleware
 
     private function setNonceCache(string $nonce): bool
     {
-        // todo unittest里Cache无法set值，但是会返回true
         return Cache::add($this->getNonceCacheKey($nonce), 1, self::TIME_OUT / 60);
     }
 

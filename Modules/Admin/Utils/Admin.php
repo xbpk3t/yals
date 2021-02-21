@@ -2,12 +2,11 @@
 
 namespace Modules\Admin\Utils;
 
-use Modules\Admin\Entities\AdminUser;
 use Modules\Api\Entities\User;
+use Modules\Admin\Entities\AdminUser;
 
 /**
- * Class Admin
- * @package Modules\Admin\Utils
+ * Class Admin.
  */
 class Admin
 {
@@ -63,8 +62,6 @@ class Admin
 
     /**
      * 获取管理员目录路径.
-     *
-     * @param string $path
      *
      * @return string
      */

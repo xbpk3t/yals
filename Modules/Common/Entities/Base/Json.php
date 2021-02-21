@@ -8,13 +8,11 @@ class Json implements CastsAttributes
 {
     public function get($model, string $key, $value, array $attributes)
     {
-        // TODO: Implement get() method.
-        return json_decode($value, true);
+        return jsonDecode($value);
     }
 
     public function set($model, string $key, $value, array $attributes)
     {
-        // TODO: Implement set() method.
-        return json_encode($value);
+        return jsonEncode($value);
     }
 }

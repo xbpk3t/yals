@@ -3,16 +3,14 @@
 namespace Modules\Common\Entities;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use zgldh\QiniuStorage\QiniuStorage;
+use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
- * Class File
- * @package Modules\Common\Entities
+ * Class File.
  *
- * @property int $id
+ * @property int    $id
  * @property string $filename
  * @property string $ext
  * @property string $url
@@ -34,10 +32,11 @@ class File extends Model
     protected $perPage = 30;
 
     /**
-     * 删除文件(删除数据库+对应oss数据)
+     * 删除文件(删除数据库+对应oss数据).
+     *
+     * @throws \Exception
      *
      * @return bool
-     * @throws \Exception
      */
     public function delete()
     {
@@ -64,8 +63,6 @@ class File extends Model
 
     /**
      * 数据库中是否还有相同文件的记录.
-     *
-     * @return bool
      */
     protected function hasSameFile(): bool
     {
