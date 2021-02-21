@@ -3,13 +3,18 @@
 namespace Modules\Admin\Utils;
 
 use Modules\Admin\Entities\AdminUser;
+use Modules\Api\Entities\User;
 
+/**
+ * Class Admin
+ * @package Modules\Admin\Utils
+ */
 class Admin
 {
     /**
      * 当前登录管理员.
      *
-     * @return AdminUser|\Illuminate\Contracts\Auth\Authenticatable
+     * @return AdminUser
      */
     public static function user()
     {
@@ -23,7 +28,8 @@ class Admin
      */
     public static function isAdministrator()
     {
-        return static::user() && static::user()->isAdministrator();
+//        return static::user() && static::user()->isAdministrator();
+        return static::user()->isAdministrator();
     }
 
     /**
@@ -58,7 +64,7 @@ class Admin
     /**
      * 获取管理员目录路径.
      *
-     * @param $path
+     * @param string $path
      *
      * @return string
      */

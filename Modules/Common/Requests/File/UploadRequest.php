@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Common\Requests;
+namespace Modules\Common\Requests\File;
 
 use Modules\Common\Requests\Base\ApiRequest;
 
-class SendSmsRequest extends ApiRequest
+class UploadRequest extends ApiRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,7 +14,8 @@ class SendSmsRequest extends ApiRequest
     public function rules()
     {
         return [
-            'mobile' => ['required'],
+            'file' => ['required', 'image', 'max:2000'],
+            'category' => ['required', 'string'],
         ];
     }
 }

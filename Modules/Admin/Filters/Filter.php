@@ -4,15 +4,11 @@ namespace Modules\Admin\Filters;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter
 {
     protected $request;
 
-    /**
-     * @var Builder
-     */
     protected $builder;
 
     protected $filters = [];
@@ -99,15 +95,13 @@ abstract class Filter
      * 过滤简单过滤器.
      *
      * @param string       $filter 过滤字段
-     * @param string|array $op     操作
+     * @param array $op     操作
      * @param mixed        $value  请求中对应的值
      */
-    protected function applySimpleFilter($filter, $op, $value)
+    protected function applySimpleFilter($filter, array $op, $value)
     {
-        if (is_array($op)) {
-            $args = array_slice($op, 1);
-            $op = $op[0];
-        }
+        $args = array_slice($op, 1);
+        $op = $op[0];
 
         switch ($op) {
             case 'equal':

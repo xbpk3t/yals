@@ -34,10 +34,9 @@ abstract class PermissionMiddleware
         if (!empty($args) || $this->shouldPassThrough($request)) {
             return $next($request);
         }
-
-        if (!Admin::user()) {
-            PermissionChecker::error();
-        }
+//        if (!Admin::user()) {
+//            PermissionChecker::error();
+//        }
 
         if ($this->checkRoutePermission($request)) {
             return $next($request);

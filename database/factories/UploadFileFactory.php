@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Modules\Common\Entities\UploadFile;
+use Modules\Common\Entities\File;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UploadFileFactory extends Factory
@@ -12,7 +12,7 @@ class UploadFileFactory extends Factory
      *
      * @var string
      */
-    protected $model = UploadFile::class;
+    protected $model = File::class;
 
     /**
      * Define the model's default state.

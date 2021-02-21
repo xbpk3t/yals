@@ -15,7 +15,7 @@ trait RestfulResponse
     protected $ban = 204;
 
     // 返回msg
-    public function okMsg($msg)
+    public function okMsg($msg = '')
     {
         return $this->ok(200, $msg);
     }

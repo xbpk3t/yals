@@ -8,9 +8,9 @@ parameters:
         - app
         - Modules\
     # The level 8 is the highest level
-    level: 4
+    level: 1
     excludePaths:
         - ./*/*/FileToBeExcluded.php
-    ignoreErrors:
-        - '#\|null but return statement is missing.#'
-    checkMissingIterableValueType: false
+#    ignoreErrors:
+#        - '#\|null but return statement is missing.#'
+    checkMissingIterableValueType: true

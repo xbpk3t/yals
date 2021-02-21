@@ -104,7 +104,7 @@ class RedisUtils
 
     /**
      * @param string $tableName
-     * @param string $name
+     * @param string|array $name
      *
      * @return array
      */

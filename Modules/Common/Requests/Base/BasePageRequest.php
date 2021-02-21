@@ -24,6 +24,8 @@ class BasePageRequest extends FormRequest
     public function rules()
     {
         return [
+            'page' => ['required', 'int'],
+            'size' => ['required', 'int']
         ];
     }
 }

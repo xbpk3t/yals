@@ -13,7 +13,7 @@ class BaseTimeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

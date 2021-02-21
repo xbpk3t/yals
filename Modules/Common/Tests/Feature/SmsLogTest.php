@@ -32,8 +32,6 @@ class SmsLogTest extends TestCase
             'Accept' => 'application/prs.starter.v1.0+json',
         ]);
 
-        dd($response);
-
         $response->assertStatus(200);
     }
 }

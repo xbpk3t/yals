@@ -2,6 +2,16 @@
 
 namespace Modules\Admin\Entities;
 
+/**
+ * Class AdminPermission
+ * @package Modules\Admin\Entities
+ *
+ * @property string $name
+ * @property string $slug
+ * @property string $created_at
+ * @property string $updated_at
+ *
+ */
 class AdminPermission extends Model
 {
     public static $httpMethods = [

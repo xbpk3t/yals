@@ -3,7 +3,7 @@
 namespace Modules\Common\Controllers;
 
 use Modules\Common\Utils\Base\SmsUtils;
-use Modules\Common\Requests\SendSmsRequest;
+use Modules\Common\Requests\SMS\SendSmsRequest;
 
 class SmsLogController extends BaseController
 {

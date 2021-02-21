@@ -26,7 +26,12 @@ $mwLogin = ['middleware' => [
 // 不需要登录的接口
 $api->group(array_merge($params, $mwNotLogin), function ($api) {
     $api->post('/sms', 'SmsLogController@sendSms');
-    $api->post('/upload', 'UploadFileController@upload');
+
+    $api->group(['prefix' => 'file'], function ($api) {
+        $api->post('/upload', 'FileController@upload');
+        $api->delete('/del', 'FileController@del');
+        $api->delete('/batchDel', 'FileController@batchDel');
+    });
 });
 
 // 登录后才能使用的接口

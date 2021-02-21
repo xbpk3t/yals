@@ -10,6 +10,13 @@ use zgldh\QiniuStorage\QiniuStorage;
 class QiNiu
 {
     protected $client_ip = '127.0.0.1';
+    protected $disk;
+
+    public function __construct()
+    {
+        //
+        $this->disk = QiniuStorage::disk('qiniu');
+    }
 
     /**
      * 单张图片上传.
@@ -28,21 +35,20 @@ class QiNiu
 
     private function put(UploadedFile $file, string $category)
     {
-        $disk = QiniuStorage::disk('qiniu');
         $ext = $file->getClientOriginalExtension();
         $realPath = $file->getRealPath();
         $key = Etag::sum($realPath);
 
         $fileName = sprintf('%s.%s', $key[0], $ext);
         $contents = @file_get_contents($realPath);
-        $result = $disk->put($fileName, $contents);
+        $result = $this->disk->put("$category/".$fileName, $contents);
 
         if (!$result) {
             abort(400, '文件上传失败');
         }
         $md5 = md5_file($file->getRealPath());
 
-        $download = $disk->downloadUrl($category . '/' . $fileName);
+        $download = $this->disk->downloadUrl("$category/".$fileName);
 
         return [
             'filename' => $fileName,
@@ -51,6 +57,7 @@ class QiNiu
             'mime_type' => $file->getMimeType(),
             'md5' => $md5,
             'url' => $download->getUrl(),
+            'category' => $category
         ];
     }
 

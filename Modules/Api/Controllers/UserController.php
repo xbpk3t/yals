@@ -3,20 +3,37 @@
 namespace Modules\Api\Controllers;
 
 use Modules\Api\Entities\User;
+use Modules\Api\Requests\User\RegisterRequest;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Modules\Api\Requests\User\LoginRequest;
 use Modules\Common\Controllers\BaseController;
+use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use \Exception;
+
 
 class UserController extends BaseController
 {
     protected $user;
+    protected $jwt;
 
-    public function __construct(User $user)
+    public function __construct(User $user, JWTAuth $jwt)
     {
         $this->user = $user;
+        $this->jwt = $jwt;
     }
 
-    public function login(LoginRequest $request)
+    /**
+     * @param RegisterRequest $request
+     * @return object
+     */
+    public function register(RegisterRequest $request):object
+    {
+        return $this->okMsg();
+    }
+
+    public function login(LoginRequest $request):object
     {
         try {
             //验证用户是否存在，
@@ -27,13 +44,13 @@ class UserController extends BaseController
             if (!$token = $this->jwt->attempt($request->only('username', 'password'))) {
                 return $this->okMsg('用户名或密码错误');
             }
-        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+        } catch (TokenExpiredException $e) {
             return $this->okMsg('登录过期');
-        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+        } catch (TokenInvalidException $e) {
             return $this->okMsg('无效的token');
-        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+        } catch (JWTException $e) {
             return $this->okMsg('token未提交');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $this->okMsg('操作出错');
         }
 
