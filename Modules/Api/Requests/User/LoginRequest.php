@@ -15,7 +15,7 @@ class LoginRequest extends ApiRequest
     public function rules()
     {
         return [
-            'mobile' => ['required', Rule::exists('tz_user', 'mobile')],
+            'username' => ['required', Rule::exists('tz_user', 'username')],
             'password' => ['required'],
         ];
     }

@@ -38,18 +38,29 @@ class BaseTestCase extends TestCase
         return $app;
     }
 
+    protected function isLoginHeader(bool $flag = true)
+    {
+        if ($flag) {
+            $token = $this->userLogin();
+
+            return $this->headers($token);
+        }
+
+        return $this->header;
+    }
+
     /**
      * @return string[]
      */
-    protected function headers(array $user = [], array $addition = []): array
+    protected function headers(string $token = '', array $addition = []): array
     {
         //添加版本号头部信息
         $headers = [
             'Accept' => 'application/prs.starter.v1.0+json',
         ];
-        //拼接 token
-        if ($user) {
-            $headers['Authorization'] = 'Bearer ' . $user['data']['token'];
+
+        if ($token) {
+            $headers['Authorization'] = 'Bearer ' . $token;
         }
 
         if ($addition) {
@@ -57,5 +68,19 @@ class BaseTestCase extends TestCase
         }
 
         return $headers;
+    }
+
+    private function userLogin()
+    {
+        // todo 需要先注册
+        $url = $this->host . '/api/user/login';
+        $response = $this->withHeaders($this->header)->post($url, [
+            'username' => 'd729c0e7-e726-46c1-86f5-ccfd96c9acbf',
+            'password' => '102gzg9RBiLnOnwHx',
+        ]);
+
+        $userInfo = $response->getOriginalContent();
+
+        return $userInfo['data']['token'];
     }
 }

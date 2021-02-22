@@ -2,11 +2,13 @@
 
 namespace Modules\Api\Controllers;
 
+use Cache;
 use Exception;
-use Tymon\JWTAuth\JWTAuth;
 use Illuminate\Support\Str;
-//use Tymon\JWTAuth\Facades\JWTAuth;
 use Modules\Api\Entities\User;
+use Tymon\JWTAuth\JWTAuth as JWT;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Modules\Api\Requests\User\LoginRequest;
 use Modules\Api\Requests\User\RegisterRequest;
@@ -20,7 +22,7 @@ class UserController extends BaseController
     protected $user;
     protected $jwt;
 
-    public function __construct(User $user, JWTAuth $jwt)
+    public function __construct(User $user, JWT $jwt)
     {
         $this->user = $user;
         $this->jwt = $jwt;
@@ -31,11 +33,18 @@ class UserController extends BaseController
      */
     public function register(RegisterRequest $request): object
     {
-        // check短信验证码
-        // 创建用户，返回token
+        $code = $request->code;
+        $mobile = $request->mobile;
+        $password = $request->password;
+
+        if (!$code == env('COMMON_CODE') && !$code == Cache::get($mobile)) {
+            return $this->okMsg('短信验证码错误');
+        }
+
         try {
-            $this->user->create(['mobile' => $request->mobile, 'username' => Str::uuid()]);
-            $token = $this->jwt->attempt($request->only('username', 'password'));
+            $user = $this->user->create(['mobile' => $request->mobile, 'username' => Str::uuid(), 'password' => Hash::make($password)]);
+
+            $token = JWTAuth::fromUser($user);
 
             return $this->okList(compact('token'));
         } catch (Exception $e) {

@@ -74,20 +74,6 @@
 4. 删掉没用的代码，从框架加载角度，优化一下laravel
 
 
-### v0.4
-
-1. 定时自动逆向migrate表结构到本地
-    1. 将指定表(比如配置表)数据写到本地seeder。便于迁移项目，也防止数据库丢失
-    2. 将指定时间前的migrations文件自动清除
-2. 添加现有接口的测试用例
-    1. 使用`codedungeon/phpunit-result-printer`优化laravel的unittest体验
-3. 修改`nwidart/laravel-modules`生成代码的目录结构😀
-   1. 将Http文件夹下的`Controllers`、`Middleware`、`Requests`子文件夹拆出来
-   2. 添加自己需要的文件夹及文件，比如`transformers`以及`tests`文件夹
-4. 移除sms通用模块，用超哥的`easy-sms`代替自己写的sms包😀
-5. 去掉一些冗余的功能和模块，比如"优惠券模块"等😀
-6. 解决larastan目前的所有warning😀
-
 
 
 

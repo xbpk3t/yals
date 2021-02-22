@@ -13,7 +13,6 @@ class RegisterRequest extends ApiRequest
             'code' => ['required', 'int'],
             'mobile' => ['required', 'string', Rule::unique('tz_user', 'mobile')],
             'password' => ['required', 'string'],
-            'username' => ['required', 'string'],
         ];
     }
 
