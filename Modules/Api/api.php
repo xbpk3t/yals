@@ -26,10 +26,15 @@ $mwLogin = ['middleware' => [
 // 不需要登录的接口
 $api->group(array_merge($params, $mwNotLogin), function ($api) {
     $api->group(['prefix' => '/user'], function ($api) {
+        $api->post('/register', 'UserController@register');
         $api->post('/login', 'UserController@login');
     });
 });
 
 // 需要登录的接口
 $api->group(array_merge($params, $mwLogin), function ($api) {
+    $api->group(['prefix' => '/user'], function ($api) {
+        $api->post('/refresh', 'UserController@refresh');
+        $api->post('/logout', 'UserController@logout');
+    });
 });

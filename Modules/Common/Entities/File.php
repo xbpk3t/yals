@@ -68,7 +68,7 @@ class File extends Model
     {
         return (bool) static::query()
             ->where('filename', $this->filename)
-            ->where('id', '<>', $this->id)
+            ->where('md5', '<>', $this->md5)
             ->first();
     }
 }

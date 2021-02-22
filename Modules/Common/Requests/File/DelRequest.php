@@ -10,7 +10,7 @@ class DelRequest extends ApiRequest
     public function rules()
     {
         return [
-            'id' => ['required', 'int', Rule::exists('tz_upload_file')],
+            'id' => ['required', 'string', Rule::exists('tz_upload_file', 'md5')],
         ];
     }
 

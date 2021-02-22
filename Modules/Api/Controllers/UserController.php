@@ -3,14 +3,17 @@
 namespace Modules\Api\Controllers;
 
 use Exception;
+use Tymon\JWTAuth\JWTAuth;
+use Illuminate\Support\Str;
+//use Tymon\JWTAuth\Facades\JWTAuth;
 use Modules\Api\Entities\User;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Modules\Api\Requests\User\LoginRequest;
 use Modules\Api\Requests\User\RegisterRequest;
 use Modules\Common\Controllers\BaseController;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class UserController extends BaseController
 {
@@ -23,19 +26,26 @@ class UserController extends BaseController
         $this->jwt = $jwt;
     }
 
+    /**
+     * 用户注册.
+     */
     public function register(RegisterRequest $request): object
     {
-        return $this->okMsg();
+        // check短信验证码
+        // 创建用户，返回token
+        try {
+            $this->user->create(['mobile' => $request->mobile, 'username' => Str::uuid()]);
+            $token = $this->jwt->attempt($request->only('username', 'password'));
+
+            return $this->okList(compact('token'));
+        } catch (Exception $e) {
+            return $this->okMsg($e->getMessage());
+        }
     }
 
     public function login(LoginRequest $request): object
     {
         try {
-            //验证用户是否存在，
-            if (empty($this->user->where('username', $request['username'])->first())) {
-                return $this->okMsg('手机号未注册');
-            }
-            //用户与密码是否正确
             if (!$token = $this->jwt->attempt($request->only('username', 'password'))) {
                 return $this->okMsg('用户名或密码错误');
             }
@@ -49,10 +59,45 @@ class UserController extends BaseController
             return $this->okMsg('操作出错');
         }
 
-        $res = [
-            'token' => JWTAuth::fromUser($this->user),
-        ];
+        $token = JWTAuth::fromUser($this->user);
 
-        return $this->okList($res);
+        return $this->okList(compact('token'));
+    }
+
+    /**
+     * 刷新token.
+     */
+    public function refresh(): object
+    {
+        $token = $this->jwt->getToken();
+
+        if (!$token) {
+            throw new UnauthorizedHttpException('Token not provided');
+        }
+
+        try {
+            $token = $this->jwt->refresh();
+        } catch (TokenInvalidException $exception) {
+            return $this->okMsg($exception->getMessage());
+        }
+
+        return $this->okList(compact('token'));
+    }
+
+    /**
+     * 退出登录.
+     *
+     * @throws JWTException
+     */
+    public function logout(): object
+    {
+        if ($this->jwt->parseToken()->invalidate()) {
+            return $this->okMsg('退出成功');
+        }
+
+        $token = $this->jwt->getToken();
+        $this->jwt->invalidate($token);
+
+        return $this->okMsg('退出成功');
     }
 }

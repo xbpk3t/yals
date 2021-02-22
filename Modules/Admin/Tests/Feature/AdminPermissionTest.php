@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Admin\Tests\Middleware;
+namespace Modules\Admin\Tests\Feature;
 
 use Tests\TestCase;
 

@@ -3,14 +3,15 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
-        </testsuite>
+<!--        <testsuite name="Unit">-->
+<!--            <directory suffix="Test.php">./tests/Unit</directory>-->
+<!--        </testsuite>-->
+<!--        <testsuite name="Feature">-->
+<!--            <directory suffix="Test.php">./tests/Feature</directory>-->
+<!--        </testsuite>-->
         <testsuite name="Feature">
             <directory suffix="Test.php">./Modules/Common/Tests/Feature</directory>
         </testsuite>
@@ -37,10 +38,6 @@
         <server name="SESSION_DRIVER" value="redis"/>
         <server name="TELESCOPE_ENABLED" value="false"/>
         <server name="CACHE_DRIVER" value="redis"/>
-        <server name="REDIS_CLIENT" value="phpredis"/>
-        <server name="REDIS_HOST" value="127.0.0.1"/>
-        <server name="REDIS_PASSWORD" value="123456"/>
-        <server name="REDIS_PORT" value="6379"/>
 <!--        <server name="MYSQL_DATABASE" value="${MYSQL_DATABASE}"/>-->
     </php>
 </phpunit>

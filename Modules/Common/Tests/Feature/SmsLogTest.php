@@ -2,36 +2,24 @@
 
 namespace Modules\Common\Tests\Feature;
 
-use Tests\TestCase;
-
 /**
  * @coversNothing
  */
-class SmsLogTest extends TestCase
+class SmsLogTest extends BaseTestCase
 {
-    public $host;
-
-//    public function __construct(?string $name = null, array $data = [], string $dataName = '')
-//    {
-//        parent::__construct($name, $data, $dataName);
-//        $this->host = 'http://kit.test';
-//    }
-
     public function testSMS()
     {
-        $url = 'http://kit.test/common/sms';
-//        $response = $this->withHeaders([
-//            'Accept' => 'application/prs.starter.v1.0+json',
-//        ])->post($url, [
-//            'mobile' => '18616287252'
-//        ]);
-
-        $response = $this->call('post', $url, [
+        $url = $this->host . '/common/sms';
+        $response = $this->withHeaders($this->header)
+            ->post($url, [
             'mobile' => '18616287252',
-        ], [], [], [
-            'Accept' => 'application/prs.starter.v1.0+json',
         ]);
 
         $response->assertStatus(200);
+        $this->assertEquals([
+            'code' => 200,
+            'message' => '短信发送成功',
+            'data' => [],
+        ], $response->getOriginalContent());
     }
 }

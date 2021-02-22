@@ -27,6 +27,17 @@ class BaseTestCase extends TestCase
         $this->header = $this->headers();
     }
 
+    public function createApplication()
+    {
+        // @var \Illuminate\Foundation\Application $app
+        $app = require __DIR__ . '/../../../../bootstrap/app.php';
+        $app->loadEnvironmentFrom('.env.dev');
+
+        $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
+
+        return $app;
+    }
+
     /**
      * @return string[]
      */

@@ -34,7 +34,7 @@ class FileController extends BaseController
     public function del(DelRequest $request): object
     {
         try {
-            File::query()->findOrFail($request->id)->delete();
+            File::query()->findOrFail($request->id, 'md5')->delete();
         } catch (FileException $exception) {
             return $this->errorMsg($exception->getMessage());
         }

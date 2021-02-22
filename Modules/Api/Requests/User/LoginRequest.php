@@ -2,6 +2,7 @@
 
 namespace Modules\Api\Requests\User;
 
+use Illuminate\Validation\Rule;
 use Modules\Common\Requests\Base\ApiRequest;
 
 class LoginRequest extends ApiRequest
@@ -14,8 +15,15 @@ class LoginRequest extends ApiRequest
     public function rules()
     {
         return [
-            'username' => ['required'],
+            'mobile' => ['required', Rule::exists('tz_user', 'mobile')],
             'password' => ['required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.exists' => '手机号未注册',
         ];
     }
 }
