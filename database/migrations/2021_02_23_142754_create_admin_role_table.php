@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUploadFilesTable extends Migration
+class CreateAdminRoleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateUploadFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('upload_files', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('admin_role', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50)->unique('admin_roles_name_unique');
+            $table->string('slug', 50)->unique('admin_roles_slug_unique');
+            $table->timestamps(10);
         });
     }
 
@@ -26,6 +28,6 @@ class CreateUploadFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upload_files');
+        Schema::drop('admin_role');
     }
 }

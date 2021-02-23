@@ -96,11 +96,11 @@ if (!function_exists('beforeDaysFormatList')) {
     /**
      * 列出之前n天的格式化时间，返回数组.
      */
-    function beforeDaysFormatList(string $days, string $prefix = ''): array
+    function beforeDaysFormatList(int $days = 5, string $format = 'Y-m-d', string $prefix = ''): array
     {
         $dayArr = [];
         for ($i = 0; $i < $days; ++$i) {
-            $dayArr[$i] = $prefix . beforeNowFormat('day', $i);
+            $dayArr[$i] = $prefix . beforeNowFormat('day', $i, $format);
         }
 
         return $dayArr;
@@ -132,9 +132,9 @@ if (!function_exists('todayTimestamp')) {
 
 //今天；"2019-05-31"
 if (!function_exists('todayDate')) {
-    function todayDate()
+    function todayDate(string $format = 'Y-m-d'): string
     {
-        return date('Y-m-d', time());
+        return date($format, time());
     }
 }
 

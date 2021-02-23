@@ -24,7 +24,7 @@ class UserTest extends BaseTestCase
     {
         $url = $this->host . '/api/user/login';
         $response = $this->withHeaders($this->header)->post($url, [
-            'username' => 'd729c0e7-e726-46c1-86f5-ccfd96c9acbf',
+            'username' => '115fd8bb-d64e-47b2-89fa-21640927aeb2',
             'password' => '102gzg9RBiLnOnwHx',
         ]);
 

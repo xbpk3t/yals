@@ -50,8 +50,10 @@
 1. *clone项目*。`gcl git@github.com:x1a0xv4n/laravel-starter.git`
 2. *切换分支*。切换分支到对应laravel版本，master分支默认laravel最新版本`git checkout -b origin/target-version-branch`
 3. *配置文件*。开发环境下，请复制`.env.prod`为`.env.dev`，并填写基本配置如数据库、redis、dingo等，如有问题，请发issue。
-4. *sql文件*。执行根目录下的`laravel_starter.sql`
-5. *部署服务*。
+4. *sql文件*
+    1. `migrate`生成表结构
+    2. `db:seed`写入配置表数据
+5. *部署服务*
 
 
 
