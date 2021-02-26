@@ -65,26 +65,20 @@
 
 ## todo
 
+RSA接口加密
+
 1. docker-compose部署
 2. 手动部署也可以直接使用命令初始化项目，优化使用体验
 3. 链路追踪: 使用zipkin作为laravel的链路追踪方案
 1. 第三方登录(微信登录、qq登录)
 2. 第三方支付(微信支付、支付宝)
-3. url转二维码
-4. 图片验证码
-所有中间件的unittest
-RSA接口加密
-test一下aes加密，在使用fractal的collection()、item()的情况下是否work
-
-
-优化文件上传功能，该放到model里的写到model里
-
-
-
 
 ## v1.2
 
 用pm2管理laravel队列
 发送短信表需要一个driver字段
-命令行进度条
 软删除
+支持类似ThinkPHP5的验证场景
+所有中间件的unittest
+
+test一下aes加密，在使用fractal的collection()、item()的情况下是否work

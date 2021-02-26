@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class MigrationGenerateCommand extends Command
 {
-    protected $signature = 'migrate:genAndSeed';
+    // Migrate And Seed
+    protected $signature = 'app:mas';
 
     protected $description = '';
 

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Modules\Admin\Console\AdminInitCommand;
+use Modules\Common\Console\InitCommand;
 use Modules\Common\Console\MigrationGenerateCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         AdminInitCommand::class,
         MigrationGenerateCommand::class,
+        InitCommand::class
     ];
 
     /**

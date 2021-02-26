@@ -21,7 +21,7 @@ class CreateAdminMenuTable extends Migration
             $table->string('icon', 50);
             $table->string('uri')->nullable();
             $table->string('permission')->nullable();
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 
