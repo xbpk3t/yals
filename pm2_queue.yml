@@ -1,0 +1,13 @@
+apps:
+  - name: starter
+  - script: artisan
+  - exec_mode: fork
+  - interpreter: php
+  - instances: 1
+  - args:
+      - queue:work
+      # 指定任务的最大重试次数，否则会一直重试，有可能会把内存爆掉
+      - --tries=5
+      - --sleep=1
+      # 任务可以运行的最大秒数，优先执行job里指定的timeout值，这里的参数作为默认值使用
+      - --timeout=3

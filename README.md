@@ -73,6 +73,18 @@
 3. url转二维码
 4. 图片验证码
 所有中间件的unittest
-api模块和admin模块的后置中间件log
 RSA接口加密
 test一下aes加密，在使用fractal的collection()、item()的情况下是否work
+
+
+优化文件上传功能，该放到model里的写到model里
+
+
+
+
+## v1.2
+
+用pm2管理laravel队列
+发送短信表需要一个driver字段
+命令行进度条
+软删除
