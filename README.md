@@ -40,21 +40,10 @@
 
 ## 部署
 
-### 手动部署
+1. clone项目。`gcl git@github.com:x1a0xv4n/laravel-starter.git`
+2. 初始化项目`php artisan app:init`
+3. 部署服务`valet link xxx`
 
-1. *clone项目*。`gcl git@github.com:x1a0xv4n/laravel-starter.git`
-2. *切换分支*。切换分支到对应laravel版本，master分支默认laravel最新版本`git checkout -b origin/target-version-branch`
-3. *配置文件*。开发环境下，请复制`.env.prod`为`.env.dev`，并填写基本配置如数据库、redis、dingo等，如有问题，请发issue。
-4. *sql文件*
-    1. `migrate`生成表结构
-    2. `db:seed`写入配置表数据
-5. *部署服务*
-
-
-
-### docker-compose部署
-
-暂时没空，过两天再写
 
 
 
@@ -68,8 +57,7 @@
 RSA接口加密
 
 1. docker-compose部署
-2. 手动部署也可以直接使用命令初始化项目，优化使用体验
-3. 链路追踪: 使用zipkin作为laravel的链路追踪方案
+3. 
 1. 第三方登录(微信登录、qq登录)
 2. 第三方支付(微信支付、支付宝)
 
@@ -77,8 +65,9 @@ RSA接口加密
 
 用pm2管理laravel队列
 发送短信表需要一个driver字段
-软删除
+手动部署也可以直接使用命令初始化项目，优化使用体验
+
 支持类似ThinkPHP5的验证场景
 所有中间件的unittest
-
+链路追踪: 使用zipkin作为laravel的链路追踪方案
 test一下aes加密，在使用fractal的collection()、item()的情况下是否work
