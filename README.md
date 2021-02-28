@@ -57,17 +57,9 @@
 RSA接口加密
 
 1. docker-compose部署
-3. 
-1. 第三方登录(微信登录、qq登录)
-2. 第三方支付(微信支付、支付宝)
+2. 第三方登录(微信登录、qq登录)
+3. 第三方支付(微信支付、支付宝)
+4. 添加类似ThinkPHP5的验证场景
+5. 链路追踪: 使用zipkin作为laravel的链路追踪方案
 
-## v1.2
 
-用pm2管理laravel队列
-发送短信表需要一个driver字段
-手动部署也可以直接使用命令初始化项目，优化使用体验
-
-支持类似ThinkPHP5的验证场景
-所有中间件的unittest
-链路追踪: 使用zipkin作为laravel的链路追踪方案
-test一下aes加密，在使用fractal的collection()、item()的情况下是否work

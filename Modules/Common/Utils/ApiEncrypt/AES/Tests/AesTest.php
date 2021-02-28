@@ -2,70 +2,64 @@
 
 namespace Modules\Common\Utils\ApiEncrypt\AES\Tests;
 
-use Tests\TestCase;
+use Route;
 use Illuminate\Http\Request;
+use Modules\Api\Entities\User;
 use Modules\Common\Traits\RestfulResponse;
+use Modules\Common\Tests\Feature\BaseTestCase;
+use Modules\Api\Transformers\User\UserTransformer;
 
 /**
  * @coversNothing
  */
-class AesTest extends TestCase
+class AesTest extends BaseTestCase
 {
     use RestfulResponse;
+
+    protected $encryptUrl = '/user/encrypt';
+    protected $decryptUrl = '/user/decrypt';
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        config()->set('app.key', 'base64:UPop+S4yrbflbANL517/z1TUHvisT3pXB1+K6W9V4No=');
-
-        // todo unittest里中间件执行顺序不对
-        \Route::middleware([
-            'aes.decrypt',
+        Route::middleware([
             'aes.encrypt',
-        ])->any('/api/sign', function (Request $request) {
-            dump($request->all());
+        ])->post($this->encryptUrl, function (Request $request) {
+            $users = User::query()->where('mobile', '18616287252')->first();
 
-            return $this->okList(['username' => 'jf']);
+            return $this->response->item($users, new UserTransFormer());
+        });
+
+        Route::middleware([
+            'aes.decrypt',
+        ])->post($this->decryptUrl, function (Request $request) {
+            return $request->all();
         });
     }
 
-    public function testAes()
+    public function testAesCollectionDecrypt()
     {
-        $httpVerbs = ['get', 'post', 'put', 'delete', 'patch'];
+        $en = $this->getEncryptCtx();
 
-        $cipher = $this->mockClient();
+        $response = $this->call('post', $this->decryptUrl, [], [], [],
+            array_merge($this->header, ['CONTENT_TYPE' => 'application/json']),
+            $en);
 
-        foreach ($httpVerbs as $verb) {
-            $response = $this->withMiddleware([
-                'aes.decrypt',
-                'aes.encrypt',
-            ])->call($verb, '/api/sign', [], [], [], [
-                'Accept' => 'application/prs.starter.v1.0+json',
-            ], $cipher);
-
-            $response->assertStatus(200);
-        }
+        $response->assertStatus(200);
+        $this->assertEquals([
+            'id' => 4,
+            'username' => 'd729c0e7-e726-46c1-86f5-ccfd96c9acbf',
+            'mobile' => '18616287252',
+            'created_at' => '2021-02-22T16:08:49.000000Z',
+            'updated_at' => '2021-02-22T16:08:49.000000Z',
+        ], $response->getOriginalContent());
     }
 
-    // 接收服务端返回的密串，解密，处理后将返回加密，再发送到服务端
-    protected function mockClient()
+    private function getEncryptCtx()
     {
-        $res = jsonEncode([
-            'userInfo' => [
-                'avatar' => 'https://kernel.taobao.org//2020/11/talking_of_atomic_operations/',
-                'username' => 'jeffcott',
-                'balance' => 8888.88,
-            ],
-            'activity' => [
-                'AEP的驱动使用一个称为index block的结构来管理元数据',
-                '写日志算是实现事务最通用的方式了，日志一般分为redo和undo两种日志，为了加快恢复速度，一般还会引入检查点(checkpoint)的概念。在文件系统和数据库的实现中，基本上都能看到事务的身影。',
-            ],
-            'isPermanent' => true,
-        ]);
+        $response = $this->withHeaders($this->header)->json('post', $this->encryptUrl);
 
-        $en = encrypt($res);
-
-        return $en;
+        return $response->getContent();
     }
 }

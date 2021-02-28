@@ -35,6 +35,7 @@ class AesDecryptMiddleware
 
         try {
             $content = $this->decrypt($request->getContent());
+            // 判断是否是json
         } catch (DecryptException $exception) {
             abort(403);
         }
