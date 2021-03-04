@@ -66,3 +66,8 @@ RSA接口加密
 1. APP模块 
     1. APP更新 
     2. APP审核
+
+
+参考fastadmin的接口文档，搞一个laravel的[一键生成API文档 - FastAdmin框架文档 - FastAdmin开发文档](https://doc.fastadmin.net/doc/163.html)
+
+优化一下api-signature中间件[laravel-starter, api-signature](https://gist.github.com/x1a0xv4n/0cd81264614201a814aba5a45911df1f)
