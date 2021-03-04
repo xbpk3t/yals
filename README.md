@@ -62,4 +62,7 @@ RSA接口加密
 4. 添加类似ThinkPHP5的验证场景
 5. 链路追踪: 使用zipkin作为laravel的链路追踪方案
 
-
+给redisutils做一个facade
+1. APP模块 
+    1. APP更新 
+    2. APP审核
