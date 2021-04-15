@@ -67,7 +67,7 @@ RSA接口加密
 把这个项目[Jiannei/lumen-api-starter: Lumen 8 基础上扩展出的API 启动项目，精心设计的目录结构，规范统一的响应数据格式，Repository 模式架构的最佳实践。](https://github.com/Jiannei/lumen-api-starter)的所有feature加进来
 
 
-
+参考一下[一份经过时间检验的 Laravel PHPUnit 测试经验分享 | Laravel China 社区](https://learnku.com/articles/44675)这篇文章phpunit的用法，优化测试用例
 
 
 
