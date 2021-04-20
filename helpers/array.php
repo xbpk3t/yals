@@ -69,12 +69,12 @@ function arrUnique($array)
     $tem = '';
     $temarray = [];
     $j = 0;
-    for ($i = 0; $i < count($array); ++$i) {
-        if ($array[$i] != $tem) {
-            $temarray[$j] = $array[$i];
+    foreach ($array as $iValue) {
+        if ($iValue != $tem) {
+            $temarray[$j] = $iValue;
             ++$j;
         }
-        $tem = $array[$i];
+        $tem = $iValue;
     }
 
     return $temarray;
