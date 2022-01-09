@@ -1,4 +1,20 @@
 mysql
 .DS_Store
 .idea
+.vscode
+
+# src文件夹
+src/node_modules
+src/public/hot
+src/public/storage
+src/storage/*.key
 src/vendor
+#.env
+#.env.backup
+src/.phpunit.result.cache
+src/docker-compose.override.yml
+src/Homestead.json
+src/Homestead.yaml
+src/npm-debug.log
+src/yarn-error.log
+*.log

@@ -7,15 +7,15 @@
 
 ### api模块
 
-1. dingo+jwt-auth+fractal
+1. `dingo`+`jwt-auth`+`fractal`
 2. RSA接口加密
 3. 封装好的Exception异常类
 4. api模块的log(记录每条请求的参数和响应)
 
 ### admin模块
 
-1. CORS
-2. RBAC
+1. CORS跨域
+2. RBAC权限控制
 3. admin模块的log
 
 ### common模块
@@ -54,25 +54,21 @@
 
 ### 部署
 
-1. clone项目。`gcl git@github.com:x1a0xv4n/laravel-starter.git`
-2. 在本地把服务跑起来
-   1. 本地没有PHP开发环境的话，建议使用`valet`部署开发环境
-   2. 初始化项目`php artisan app:init`
-3. 使用docker部署服务，具体使用查看[aschmelyun/docker-compose-laravel](https://github.com/aschmelyun/docker-compose-laravel)
+1. clone项目。`gh repo clone 91php/laravel-starter`
+3. `docker-compose up --build`部署服务，具体使用查看[aschmelyun/docker-compose-laravel](https://github.com/aschmelyun/docker-compose-laravel)
 
 
 ### 二次开发
 
-1. 使用`php artisan module:make Demo`生成指定模块名，更多命令请查看拓展包[nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)
+1. 使用`php artisan module:make Demo`生成指定模块名，具体使用查看[nWidart/laravel-modules](https://github.com/nWidart/laravel-modules)
 
 
 ## todo
 
 1. 第三方登录(微信登录、qq登录)
 2. 第三方支付(微信支付、支付宝)
-3. 添加类似ThinkPHP5的`场景验证`，很好用
+3. 自己实现并添加类似ThinkPHP5的`场景验证`，很好用
 4. 链路追踪: 使用zipkin作为laravel的链路追踪方案
-5. RSA接口加密
 
 
 

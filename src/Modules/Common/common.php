@@ -25,6 +25,11 @@ $mwLogin = ['middleware' => [
 
 // 不需要登录的接口
 $api->group(array_merge($params, $mwNotLogin), function ($api) {
+
+    $api->get('/health/check', function () {
+       return "hello, world";
+    });
+
     $api->post('/sms', 'SmsLogController@sendSms');
 
     $api->group(['prefix' => 'file'], function ($api) {
