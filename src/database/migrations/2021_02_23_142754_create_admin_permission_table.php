@@ -19,7 +19,7 @@ class CreateAdminPermissionTable extends Migration
             $table->string('slug', 50)->unique('admin_permissions_slug_unique');
             $table->string('http_method')->nullable();
             $table->text('http_path')->nullable();
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 

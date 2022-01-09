@@ -20,7 +20,7 @@ class CreateAdminOperationLogTable extends Migration
             $table->string('method', 10);
             $table->string('ip');
             $table->text('input');
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 

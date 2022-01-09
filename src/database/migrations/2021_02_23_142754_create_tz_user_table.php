@@ -19,7 +19,7 @@ class CreateTzUserTable extends Migration
             $table->string('mobile')->nullable()->comment('手机号');
             $table->string('password')->nullable();
             $table->string('remember_token', 100)->nullable();
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 

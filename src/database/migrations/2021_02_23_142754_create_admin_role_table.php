@@ -17,7 +17,7 @@ class CreateAdminRoleTable extends Migration
             $table->increments('id');
             $table->string('name', 50)->unique('admin_roles_name_unique');
             $table->string('slug', 50)->unique('admin_roles_slug_unique');
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 

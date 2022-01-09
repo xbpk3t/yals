@@ -20,7 +20,7 @@ class CreateAdminUserTable extends Migration
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('remember_token', 100)->nullable();
-            $table->timestamps(10);
+            $table->timestamps(6);
         });
     }
 

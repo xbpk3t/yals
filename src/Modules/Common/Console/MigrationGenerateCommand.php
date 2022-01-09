@@ -43,7 +43,7 @@ class MigrationGenerateCommand extends Command
     /**
      * @return bool
      */
-    protected function createMigrations()
+    protected function createMigrations(): bool
     {
         try {
             Artisan::call('migrate:generate', [
@@ -54,7 +54,7 @@ class MigrationGenerateCommand extends Command
             return true;
         } catch (Exception $exception) {
             $this->error('create migrations error');
-//            return $exception->getMessage();
+
             return false;
         }
     }
@@ -62,7 +62,7 @@ class MigrationGenerateCommand extends Command
     /**
      * @return bool
      */
-    protected function seeds()
+    protected function seeds(): bool
     {
         try {
             Artisan::call('iseed', [
@@ -75,12 +75,12 @@ class MigrationGenerateCommand extends Command
         } catch (TableNotFoundException $exception) {
             // todo 加一个crontab的log-channel
             $this->error('create table seeders error');
-//            return $exception->getMessage();
+
             return false;
         }
     }
 
-    protected function clearHistoryMigrations()
+    protected function clearHistoryMigrations(): bool
     {
         $dbPath = database_path('migrations');
         if (!File::exists($dbPath)) {

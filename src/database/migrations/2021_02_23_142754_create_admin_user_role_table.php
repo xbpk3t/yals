@@ -16,7 +16,7 @@ class CreateAdminUserRoleTable extends Migration
         Schema::create('admin_user_role', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('user_id');
-            $table->timestamps(10);
+            $table->timestamps(6);
             $table->index(['role_id', 'user_id'], 'admin_role_users_role_id_user_id_index');
         });
     }

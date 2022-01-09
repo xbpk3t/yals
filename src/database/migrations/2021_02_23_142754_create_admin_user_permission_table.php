@@ -16,7 +16,7 @@ class CreateAdminUserPermissionTable extends Migration
         Schema::create('admin_user_permission', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('permission_id');
-            $table->timestamps(10);
+            $table->timestamps(6);
             $table->index(['user_id', 'permission_id'], 'admin_user_permissions_user_id_permission_id_index');
         });
     }

@@ -16,7 +16,7 @@ class CreateAdminRoleMenuTable extends Migration
         Schema::create('admin_role_menu', function (Blueprint $table) {
             $table->integer('role_id');
             $table->integer('menu_id');
-            $table->timestamps(10);
+            $table->timestamps(6);
             $table->index(['role_id', 'menu_id']);
         });
     }
