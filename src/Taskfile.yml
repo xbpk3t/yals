@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  artisan:
+    des: artisan minify
+    cmds: php artisan {{.CLI_ARG}}
+
+  lint:
+    des: php linter
+    cmds: php-cs-fixer fix $PWD --config=../.github/linters/cs.php

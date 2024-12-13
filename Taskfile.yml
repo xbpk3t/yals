@@ -1,0 +1,6 @@
+version: '3'
+
+includes:
+  laravel: src/Taskfile.yml
+  deploy: deploy/Taskfile.yml
+

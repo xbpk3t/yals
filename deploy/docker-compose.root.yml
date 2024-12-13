@@ -6,8 +6,8 @@ networks:
 services:
   site:
     build:
-      context: ./dockerfiles
-      dockerfile: nginx.root.dockerfile
+      context: deploy
+      dockerfile: dockerfiles/nginx.root.dockerfile
     container_name: nginx
     ports:
       - 80:80
@@ -40,8 +40,8 @@ services:
 
   php:
     build:
-      context: ./dockerfiles
-      dockerfile: php.root.dockerfile
+      context: deploy
+      dockerfile: dockerfiles/php.root.dockerfile
     container_name: php
     volumes:
       - ./src:/var/www/html:delegated
@@ -85,8 +85,8 @@ services:
 
   artisan:
     build:
-      context: ./dockerfiles
-      dockerfile: php.root.dockerfile
+      context: deploy
+      dockerfile: dockerfiles/php.root.dockerfile
     container_name: artisan
     volumes:
       - ./src:/var/www/html:delegated

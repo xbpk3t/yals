@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build -v -i main.go
+
+  up:
+    cmds:
+      - docker-compose up --build -d
